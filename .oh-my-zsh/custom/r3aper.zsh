@@ -1,6 +1,3 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
 
@@ -27,6 +24,3 @@ else
     RPROMPT='%{$reset_color%} %{$fg[red]%}$(rbenv version | sed -e "s/ (set.*$//") %{$reset_color%}'
   fi
 fi
-
-# Source oh-my-zsh
-source $ZSH/oh-my-zsh.sh
