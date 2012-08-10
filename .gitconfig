@@ -1,0 +1,22 @@
+[user]
+	name = Pierre FILSTROFF
+	email = pfilstroff@gmail.com
+
+[alias]
+	st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+ 
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = true
+
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = /usr/bin/vim
