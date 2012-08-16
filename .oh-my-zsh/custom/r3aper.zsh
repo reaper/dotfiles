@@ -16,11 +16,13 @@ export GREP_COLOR='1;32'
 #RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-#RPROMPT
+local rvm=''
 if which rvm-prompt &> /dev/null; then
-  RPROMPT='%{$reset_color%} %{$fg[red]%}[$(~/.rvm/bin/rvm-prompt)] %{$reset_color%}'
+    rvm='%{$fg[green]%}‹$(rvm-prompt i v g)›%{$reset_color%}'
 else
-  if which rbenv &> /dev/null; then
-    RPROMPT='%{$reset_color%} %{$fg[red]%}$(rbenv version | sed -e "s/ (set.*$//") %{$reset_color%}'
-  fi
+    if which rbenv &> /dev/null; then
+        rvm='%{$fg[green]%}‹$(rbenv version | sed -e "s/ (set.*$//")›%{$reset_color%}'
+    fi  
 fi
+
+RPROMPT="${rvm}"

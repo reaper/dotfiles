@@ -3,14 +3,21 @@ call pathogen#infect()
 filetype plugin indent on
 syntax on
 
-set nu
-set expandtab
+set number
 set noantialias
 set modeline
-set tabstop=2
-set shiftwidth=2
-set smarttab
-set expandtab
+set tabstop=4
+set hlsearch
+set incsearch
+
+set ts=4 sw=4 et
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424
+
+let mapleader = ','
 
 colorscheme molokai
 

@@ -40,7 +40,8 @@ git_bundles = [
   "git://github.com/vim-scripts/Better-CSS-Syntax-for-Vim.git",
   "git://github.com/ecomba/vim-ruby-refactoring.git",
   "git://github.com/clones/vim-zsh.git",
-  "git://github.com/xolox/vim-session.git"
+  "git://github.com/xolox/vim-session.git",
+  "git://github.com/nathanaelkane/vim-indent-guides.git"
 ]
 
 require 'fileutils'
