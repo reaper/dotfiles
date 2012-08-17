@@ -17,6 +17,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424
 
+let g:session_autosave = 'yes'
 let mapleader = ','
 
 colorscheme molokai
