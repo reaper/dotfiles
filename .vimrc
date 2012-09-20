@@ -11,6 +11,7 @@ set incsearch
 set nofoldenable
 set tabstop=4
 set shiftwidth=4
+set expandtab
 
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
