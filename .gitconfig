@@ -9,10 +9,17 @@
 	co = checkout
 	df = diff
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+	new = !git lg $1@{1}..$1@{0} "$@"
+	serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
 	web = instaweb -d webrick
-	spull = svn rebase
-	spush = svn dcommit
+	up = svn rebase
+	push-svn = svn dcommit
+	cherry-pick-svn = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
+	branch-svn = svn branch
+	merge-svn = merge --squash
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
  
 [color]
 	branch = auto
@@ -27,5 +34,6 @@
 
 [diff]
 	tool = opendiff
+
 [log]
 	decorate = full
