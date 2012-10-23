@@ -12,9 +12,30 @@ task :default => [:install]
 
 desc "Copy files from dotfiles to home directory and build"
 task :install do
+	# Backup files
 	Rake::Task["backup"].invoke
+	# Replace files from dotfiles folder to home
 	Rake::Task["replace"].invoke
+	# Update vim plugins
 	Rake::Task["get_vim_plugins"].invoke
+end
+
+desc "Cleanup backup directory"
+task :cleanup do
+
+	puts "\nCleanup ~/.dotfiles directory"
+	puts "------------------------------------------------"
+
+	destination_dir = File.join(@home_path, @backup_folder)
+	current_timestamp = Time.now.getutc.strftime("%Y%m%d%H%M%S")
+	
+	folders =  Dir.entries(destination_dir).reject{|entry| entry == "." || entry == ".."}
+
+	if folders.size > 5
+		#TODO
+	end
+	
+	puts "Done."
 end
 
 desc "Backup dot files"
