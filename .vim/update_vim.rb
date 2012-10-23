@@ -4,7 +4,6 @@ git_bundles = [
   "git://github.com/astashov/vim-ruby-debugger.git",
   "git://github.com/majutsushi/tagbar.git",
   "git://github.com/ervandew/supertab.git",
-  "git://github.com/jelera/vim-javascript-syntax.git",
   "git://github.com/vim-scripts/The-NERD-tree.git",
   "git://github.com/vim-scripts/The-NERD-Commenter.git",
   "git://github.com/timcharper/textile.vim.git",
@@ -30,7 +29,9 @@ git_bundles = [
   "git://github.com/ecomba/vim-ruby-refactoring.git",
   "git://github.com/clones/vim-zsh.git",
   "git://github.com/xolox/vim-session.git",
-  "git://github.com/nathanaelkane/vim-indent-guides.git"
+  "git://github.com/nathanaelkane/vim-indent-guides.git",
+  "git://github.com/jabbourb/omnicpp.git",
+  "https://bitbucket.org/kh3phr3n/vim-qt-syntax.git"
 ]
 
 require 'fileutils'
