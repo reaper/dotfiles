@@ -29,13 +29,23 @@ task :cleanup do
 	destination_dir = File.join(@home_path, @backup_folder)
 	current_timestamp = Time.now.getutc.strftime("%Y%m%d%H%M%S")
 	
-	folders =  Dir.entries(destination_dir).reject{|entry| entry == "." || entry == ".."}
+	# Get folders list
+	folders = Dir.entries(destination_dir).reject{|entry| entry == "." || entry == ".."}
 
+	# Remove old folders and keep five lasts
 	if folders.size > 5
-		#TODO
+		fifth_folder = folders[5]
+		folders_to_remove = folders.select{|x| x >= fifth_folder}
+
+		for folder in folders_to_remove
+			folder_path = File.join(destination_dir, folder)
+			FileUtils.rm_rf(folder_path)
+			puts "Removed '#{folder_path}'"
+		end
+		puts "Done."
+	else
+		puts "Nothing to remove."
 	end
-	
-	puts "Done."
 end
 
 desc "Backup dot files"
