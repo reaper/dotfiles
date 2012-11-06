@@ -31,7 +31,10 @@ git_bundles = [
   "git://github.com/xolox/vim-session.git",
   "git://github.com/nathanaelkane/vim-indent-guides.git",
   "git://github.com/jabbourb/omnicpp.git",
-  "https://bitbucket.org/kh3phr3n/vim-qt-syntax.git"
+  "https://bitbucket.org/kh3phr3n/vim-qt-syntax.git",
+  "git://github.com/vim-jp/cpp-vim.git",
+  "git://github.com/msanders/cocoa.vim.git",
+  "git://github.com/vim-scripts/DoxygenToolkit.vim.git"
 ]
 
 require 'fileutils'

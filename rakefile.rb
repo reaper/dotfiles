@@ -16,6 +16,8 @@ task :install do
 	Rake::Task["backup"].invoke
 	# Replace files from dotfiles folder to home
 	Rake::Task["replace"].invoke
+	# Cleanup dotfiles backup folder 
+	Rake::Task["cleanup"].invoke
 	# Update vim plugins
 	Rake::Task["get_vim_plugins"].invoke
 end
@@ -27,15 +29,14 @@ task :cleanup do
 	puts "------------------------------------------------"
 
 	destination_dir = File.join(@home_path, @backup_folder)
-	current_timestamp = Time.now.getutc.strftime("%Y%m%d%H%M%S")
 	
 	# Get folders list
-	folders = Dir.entries(destination_dir).reject{|entry| entry == "." || entry == ".."}
+	folders = Dir.entries(destination_dir).reject{|entry| entry == "." || entry == ".."}.sort.reverse
 
 	# Remove old folders and keep five lasts
 	if folders.size > 5
-		fifth_folder = folders[5]
-		folders_to_remove = folders.select{|x| x >= fifth_folder}
+		first_fifth_folder = folders[0, 5]
+		folders_to_remove = folders - first_fifth_folder
 
 		for folder in folders_to_remove
 			folder_path = File.join(destination_dir, folder)
