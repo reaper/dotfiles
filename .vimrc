@@ -11,11 +11,13 @@ set undolevels=100 "Undo levels
 set wildignore=*.swp,*.bak,*.pyc,*.class "Set ignored files
 set nobackup "Don't do backup
 set noswapfile "Don't create swap files
+set expandtab "Replace tabs with spaces
 
 colorscheme molokai "Use molokai colorscheme
 
 call pathogen#infect() "Enable pathogen
 
+"Enable plugins and syntax
 filetype on "Enable filetype
 filetype plugin on "Enable plugins
 filetype indent on "Enable indenting
@@ -42,23 +44,23 @@ let g:syntastic_cpp_include_dirs=['/usr/local/qt/current/include/Qt', '/usr/loca
 let g:syntastic_cpp_auto_refresh_includes=1
 
 if has("unix")
-	let s:uname = system("uname")
-	if s:uname == "Darwin\n"
-		let g:syntastic_cpp_compiler='llvm-g++'
-	else
-		let g:syntastic_cpp_compiler='g++'
-	endif
+    let s:uname = system("uname")
+    if s:uname == "Darwin\n"
+        let g:syntastic_cpp_compiler='llvm-g++'
+    else
+        let g:syntastic_cpp_compiler='g++'
+    endif
 endif
 
-"CPP configuration
-autocmd BufRead,BufNewFile   *.c,*.cpp,*.h,*.hpp set noic cin expandtab
+"Enable doxygen syntax
+let g:load_doxygen_syntax=1
 
-" Tags
+"Tags
 set tags+=~/.vim/tags/cpp "Include cpp tags
 set tags+=~/.vim/tags/qt4 "Include qt4 tags
 map <C-F12> :!/usr/local/bin/ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-" OmniCppComplete
+"OmniCppComplete
 let OmniCpp_NamespaceSearch=1
 let OmniCpp_GlobalScopeSearch=1
 let OmniCpp_ShowAccess=1
@@ -67,17 +69,18 @@ let OmniCpp_MayCompleteDot=1 " autocomplete after .
 let OmniCpp_MayCompleteArrow=1 " autocomplete after ->
 let OmniCpp_MayCompleteScope=1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
+"FOURJS configuration
+autocmd BufRead,BufNewFile *.xhtml,*.css,*.js set noic cin expandtab!
 
-"_MACVIM configuration
-if has('gui_macvim')
-  autocmd VimEnter * NERDTree "Load NERDTREE plugin
-  autocmd VimEnter * wincmd p "Load current path for NERDTREE
-  autocmd VimEnter * TagbarToggle "Load Tagbar
-  set background=dark "Set background
-  set guifont=Monaco:h10 "Set font famility
-  set noantialias "Set no anti aliasing
+"Macvim configuration
+if has('gui_running')
+    autocmd VimEnter * NERDTree "Load NERDTREE plugin
+    autocmd VimEnter * wincmd p "Load current path for NERDTREE
+    autocmd VimEnter * TagbarToggle "Load Tagbar
+    set background=dark "Set background
+    set guifont=Monaco:h10 "Set font famility
+    set noantialias "Set no anti aliasing
 endif
