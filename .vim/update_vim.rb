@@ -34,7 +34,9 @@ git_bundles = [
   "https://bitbucket.org/kh3phr3n/vim-qt-syntax.git",
   "git://github.com/vim-jp/cpp-vim.git",
   "git://github.com/msanders/cocoa.vim.git",
-  "git://github.com/vim-scripts/DoxygenToolkit.vim.git"
+  "git://github.com/vim-scripts/DoxygenToolkit.vim.git",
+  "git://github.com/reaper/vim-fgl-syntax.git",
+  "git://github.com/reaper/vim-per-syntax.git"
 ]
 
 require 'fileutils'

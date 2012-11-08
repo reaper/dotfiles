@@ -30,6 +30,9 @@ let g:indent_guides_enable_on_vim_startup=1 "Enable indentation plugin
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 "Load Odd color for indentation
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424 "Load Even color for indentation
 
+"Set PER file type
+au BufNewFile,BufRead *.per setlocal filetype=per
+
 "Session
 let g:session_autosave='yes' "Save automatically session
 let mapleader=',' "Change mapleader bind key to ','
