@@ -38,3 +38,5 @@
 
 [log]
 	decorate = full
+[push]
+	default = matching

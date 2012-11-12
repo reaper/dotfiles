@@ -22,3 +22,6 @@ alias qmake='qmake -spec macx-llvm'
 
 #RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+#PYTHONBREW
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
