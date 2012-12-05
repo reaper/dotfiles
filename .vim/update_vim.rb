@@ -36,7 +36,9 @@ git_bundles = [
   "git://github.com/msanders/cocoa.vim.git",
   "git://github.com/vim-scripts/DoxygenToolkit.vim.git",
   "git://github.com/reaper/vim-fgl-syntax.git",
-  "git://github.com/reaper/vim-per-syntax.git"
+  "git://github.com/reaper/vim-per-syntax.git",
+  "git://github.com/vim-scripts/scons.vim.git",
+  "git://github.com/plasticboy/vim-markdown.git",
 ]
 
 require 'fileutils'

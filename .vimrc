@@ -3,8 +3,8 @@ set number "Display line numbers
 set hlsearch "Do highlight searches
 set incsearch "Do incremental searches
 set nofoldenable "Do not fold file content
-set tabstop=4 "Tab stop set to 4
-set shiftwidth=4 "Shif width set to 4
+set tabstop=2 "Tab stop set to 2
+set shiftwidth=2 "Shif width set to 2
 set showmatch "Set show matching parenthesis
 set history=20 "Set history to 20
 set undolevels=100 "Undo levels
@@ -30,8 +30,9 @@ let g:indent_guides_enable_on_vim_startup=1 "Enable indentation plugin
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 "Load Odd color for indentation
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424 "Load Even color for indentation
 
-"Set PER file type
+" Filetypes
 au BufNewFile,BufRead *.per setlocal filetype=per
+au BufNewFile,BufRead SConstruct,SConscript.* setlocal filetype=scons
 
 "Session
 let g:session_autosave='yes' "Save automatically session
@@ -57,6 +58,8 @@ endif
 
 "Enable doxygen syntax
 let g:load_doxygen_syntax=1
+let g:DoxygenToolkit_compactDoc="yes"
+let g:DoxygenToolkit_authorName="Pierre FILSTROFF <pfilstroff@gmail.com>"
 
 "Tags
 set tags+=~/.vim/tags/cpp "Include cpp tags
@@ -75,8 +78,8 @@ let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
-"FOURJS configuration
-autocmd BufRead,BufNewFile *.xhtml,*.css,*.js set noic cin expandtab!
+"NERDTREE
+let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.42f', '\.42m', '\.42r']
 
 "Macvim configuration
 if has('gui_running')
@@ -87,3 +90,6 @@ if has('gui_running')
     set guifont=Monaco:h10 "Set font famility
     set noantialias "Set no anti aliasing
 endif
+
+"FOURJS configuration
+autocmd BufRead,BufNewFile *.xhtml,*.css,*.js set expandtab!
