@@ -18,7 +18,6 @@ git_bundles = [
   "git://github.com/vim-scripts/Gist.vim.git",
   "git://github.com/vim-scripts/jQuery.git",
   "git://github.com/othree/html5.vim.git",
-  "git://github.com/scrooloose/syntastic.git",
   "git://github.com/Lokaltog/vim-powerline.git",
   "git://github.com/mileszs/ack.vim.git",
   "git://github.com/tpope/vim-bundler.git",
@@ -39,6 +38,8 @@ git_bundles = [
   "git://github.com/reaper/vim-per-syntax.git",
   "git://github.com/vim-scripts/scons.vim.git",
   "git://github.com/plasticboy/vim-markdown.git",
+  "git://github.com/sjl/gundo.vim.git",
+  "git://github.com/vim-scripts/python.vim--Vasiliev.git",
 ]
 
 require 'fileutils'

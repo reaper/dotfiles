@@ -34,6 +34,17 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424 "Load Even col
 au BufNewFile,BufRead *.per setlocal filetype=per
 au BufNewFile,BufRead SConstruct,SConscript.* setlocal filetype=scons
 
+" Undo persistence && GUndo
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+let g:gundo_width = 60
+let g:gundo_preview_height = 40
+let g:gundo_right = 1
+nnoremap <F5> :GundoToggle<CR>
+
+
 "Session
 let g:session_autosave='yes' "Save automatically session
 let mapleader=',' "Change mapleader bind key to ','

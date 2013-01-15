@@ -11,7 +11,7 @@ export PATH=/usr/local/qt/current/bin:$PATH #QT4
 export PATH=/usr/local/mysql/bin:$PATH #MYSQL
 
 #DYLIBS
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH #MYSQL
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:/usr/lib:$DYLD_LIBRARY_PATH #MYSQL
 
 #GREP OPTIONS
 export GREP_OPTIONS='--color=auto'
