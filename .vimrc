@@ -15,7 +15,7 @@ set expandtab "Replace tabs with spaces
 
 colorscheme molokai "Use molokai colorscheme
 
-call pathogen#infect() "Enable pathogen
+execute pathogen#infect() "Enable pathogen
 
 "Enable plugins and syntax
 filetype on "Enable filetype
@@ -32,7 +32,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424 "Load Even col
 
 " Filetypes
 au BufNewFile,BufRead *.per setlocal filetype=per
-au BufNewFile,BufRead SConstruct,SConscript.* setlocal filetype=scons
+au BufNewFile,BufRead SConstruct,SConscript,SConscript.* setlocal filetype=scons
 
 " Undo persistence && GUndo
 set undodir=~/.vim/undodir
@@ -41,7 +41,6 @@ set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 let g:gundo_width = 60
 let g:gundo_preview_height = 40
-let g:gundo_right = 1
 nnoremap <F5> :GundoToggle<CR>
 
 
