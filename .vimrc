@@ -3,11 +3,10 @@ set number "Display line numbers
 set hlsearch "Do highlight searches
 set incsearch "Do incremental searches
 set nofoldenable "Do not fold file content
+set showmatch "Set show matching parenthesis
 set tabstop=2 "Tab stop set to 2
 set shiftwidth=2 "Shif width set to 2
-set showmatch "Set show matching parenthesis
 set history=20 "Set history to 20
-set undolevels=100 "Undo levels
 set wildignore=*.swp,*.bak,*.pyc,*.class "Set ignored files
 set nobackup "Don't do backup
 set noswapfile "Don't create swap files
@@ -15,7 +14,7 @@ set expandtab "Replace tabs with spaces
 
 colorscheme molokai "Use molokai colorscheme
 
-execute pathogen#infect() "Enable pathogen
+call pathogen#infect() "Enable pathogen
 
 "Enable plugins and syntax
 filetype on "Enable filetype
@@ -43,7 +42,6 @@ let g:gundo_width = 60
 let g:gundo_preview_height = 40
 nnoremap <F5> :GundoToggle<CR>
 
-
 "Session
 let g:session_autosave='yes' "Save automatically session
 let mapleader=',' "Change mapleader bind key to ','
@@ -51,20 +49,6 @@ let mapleader=',' "Change mapleader bind key to ','
 "Tagbar
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
 let g:tagbar_width=30                          " Default is 40
-
-"Syntastic cpp
-let g:syntastic_cpp_check_header=1
-let g:syntastic_cpp_include_dirs=['/usr/local/qt/current/include/Qt', '/usr/local/qt/current/include/QtGui', '/usr/local/qt/current/include/QtCore', '/usr/local/qt/current/include/QtNetwork', '/usr/local/qt/current/include/QtMultimedia']
-let g:syntastic_cpp_auto_refresh_includes=1
-
-if has("unix")
-    let s:uname = system("uname")
-    if s:uname == "Darwin\n"
-        let g:syntastic_cpp_compiler='llvm-g++'
-    else
-        let g:syntastic_cpp_compiler='g++'
-    endif
-endif
 
 "Enable doxygen syntax
 let g:load_doxygen_syntax=1
@@ -89,7 +73,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 "NERDTREE
-let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.42f', '\.42m', '\.42r']
+let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.a', '\.la', '\.dylib', '\.42f', '\.42m', '\.42r']
 
 "Macvim configuration
 if has('gui_running')
