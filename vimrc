@@ -29,7 +29,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424 "Load Even col
 
 " Filetypes
 au BufNewFile,BufRead *.per setlocal filetype=per
-au BufNewFile,BufRead SConstruct,SConscript,SConscript.* setlocal filetype=python
+au BufNewFile,BufRead SConstruct,SConscript*,*.py setlocal filetype=python
 autocmd FileType ruby compiler ruby
 
 " Undo persistence && GUndo
