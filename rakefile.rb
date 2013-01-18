@@ -4,9 +4,9 @@ task :default => [:install]
 @home_path = File.expand_path('~')
 @file_dir_path = File.dirname(__FILE__)
 
-@vim_files = FileList[".vimrc", ".vim"]
-@git_files = FileList[".gitconfig", ".gitignore_global"]
-@zsh_files = FileList[".oh-my-zsh/custom/r3aper.zsh"]
+@vim_files = FileList["vimrc", "vim"]
+@git_files = FileList["gitconfig", "gitignore_global"]
+@zsh_files = FileList["oh-my-zsh/custom/r3aper.zsh"]
 
 @files = [@vim_files, @git_files, @zsh_files].flatten
 
@@ -34,9 +34,9 @@ task :cleanup do
     folders = Dir.entries(destination_dir).reject{|entry| entry == "." || entry == ".."}.sort.reverse
     
     # Remove old folders and keep five lasts
-    if folders.size > 5
-        first_fifth_folder = folders[0, 5]
-        folders_to_remove = folders - first_fifth_folder
+    if folders.size > 10
+        first_ten_folder = folders[0, 10]
+        folders_to_remove = folders - first_ten_folder
         
         for folder in folders_to_remove
             folder_path = File.join(destination_dir, folder)
@@ -98,12 +98,20 @@ def copy_files(files, source_dir, destination_dir)
         if File.exist?(file_path)
             if File.directory?(file_path)
                 
-                destination_folder = File.join(destination_dir, file)
-                FileUtils.rm_r(destination_folder, :force => true, :verbose => true)
-                FileUtils.cp_r(file_path, destination_folder, :verbose => true)
+                full_destination_folder = File.join(destination_dir, File.basename(file).prepend("."))
+                FileUtils.rm_r(full_destination_folder, :force => true, :verbose => true)
+                FileUtils.cp_r(file_path, full_destination_folder, :verbose => true)
             else
-                FileUtils.mkdir_p(File.join(destination_dir, File.dirname(file)), :verbose => true)    
-                FileUtils.cp_r(file_path, File.join(destination_dir, file),:verbose => true)
+                dir_name = File.dirname(file)
+
+                if(dir_name.eql?("."))
+                        FileUtils.mkdir_p(destination_dir, :verbose => true)
+                        FileUtils.cp_r(file_path, File.join(destination_dir, File.basename(file).prepend(".")), :verbose => true)
+                else
+                        full_destination_folder = File.join(destination_dir, dir_name.prepend("."))
+                        FileUtils.mkdir_p(full_destination_folder, :verbose => true)
+                        FileUtils.cp_r(file_path, File.join(full_destination_folder, File.basename(file)), :verbose => true)
+                end
             end
         end
     end

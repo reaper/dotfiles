@@ -4,8 +4,6 @@ set hlsearch "Do highlight searches
 set incsearch "Do incremental searches
 set nofoldenable "Do not fold file content
 set showmatch "Set show matching parenthesis
-set tabstop=2 "Tab stop set to 2
-set shiftwidth=2 "Shif width set to 2
 set history=20 "Set history to 20
 set wildignore=*.swp,*.bak,*.pyc,*.class "Set ignored files
 set nobackup "Don't do backup
@@ -31,7 +29,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#242424 "Load Even col
 
 " Filetypes
 au BufNewFile,BufRead *.per setlocal filetype=per
-au BufNewFile,BufRead SConstruct,SConscript,SConscript.* setlocal filetype=scons
+au BufNewFile,BufRead SConstruct,SConscript,SConscript.* setlocal filetype=python
+autocmd FileType ruby compiler ruby
 
 " Undo persistence && GUndo
 set undodir=~/.vim/undodir
