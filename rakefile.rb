@@ -6,7 +6,7 @@ task :default => [:install]
 
 @vim_files = FileList["vimrc", "vim"]
 @git_files = FileList["gitconfig", "gitignore_global"]
-@zsh_files = FileList["oh-my-zsh/custom/r3aper.zsh"]
+@zsh_files = FileList["zshrc"]
 
 @files = [@vim_files, @git_files, @zsh_files].flatten
 
