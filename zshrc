@@ -21,7 +21,8 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
 # Locales
-export LC_ALL=C
+export LC_ALL=fr_FR.UTF-8
+export LANG=fr_FR.UTF-8
 
 # Aliases
 alias qmake='qmake -spec unsupported/macx-clang'
