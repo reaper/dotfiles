@@ -20,10 +20,6 @@ export CPLUS_INCLUDE_PATH=/opt/local/freelan/include:$CPLUS_INCLUDE_PATH
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
-# Locales
-export LC_ALL=fr_FR.UTF-8
-export LANG=fr_FR.UTF-8
-
 # Aliases
 alias qmake='qmake -spec unsupported/macx-clang'
 alias mvim='rvm system do /usr/local/bin/mvim $@'
