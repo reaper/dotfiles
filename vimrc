@@ -66,6 +66,10 @@ nnoremap <C-F12> :!/usr/local/bin/ctags -R --sort=yes --c++-kinds=+p --fields=+i
 nnoremap <silent> <C-f> :FufCoverageFile<CR>
 nnoremap <silent> <S-D-Left> :NERDTreeToggle<CR>
 nnoremap <silent> <S-D-Right> :NERDTreeToggle<CR>
+nnoremap <silent> <M-D-Right> <c-w>l
+nnoremap <silent> <M-D-Left> <c-w>h
+nnoremap <silent> <M-D-Up> <c-w>k
+nnoremap <silent> <M-D-Down> <c-w>j
 
 " OmniCppComplete
 let OmniCpp_NamespaceSearch=1
