@@ -25,7 +25,7 @@ let g:indent_guides_guide_size=1 "Indentation size set to 1
 let g:indent_guides_auto_colors=0 "Indentation auto color set to 0
 let g:indent_guides_enable_on_vim_startup=1 "Enable indentation plugin
 au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1A1A1A "Load Odd color for indentation
-au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#151515 "Load Even color for indentation
+au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#171717 "Load Even color for indentation
 
 " Filetypes
 au BufNewFile,BufRead *.per setlocal filetype=per
