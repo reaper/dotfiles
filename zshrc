@@ -21,8 +21,12 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
 # Locales
-export LC_ALL=fr_FR.UTF-8
-export LANG=fr_FR.UTF-8
+if [[ `uname` == 'Darwin' ]]; then
+  export LC_ALL=fr_FR.UTF-8
+  export LANG=fr_FR.UTF-8
+elif [[ `uname` == 'Linux' ]]; then
+  export LC_ALL=$LC_CTYPE
+fi
 
 # Aliases
 alias qmake='qmake -spec unsupported/macx-clang'
