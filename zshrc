@@ -26,6 +26,7 @@ export LANG=fr_FR.UTF-8
 
 # Aliases
 alias qmake='qmake -spec unsupported/macx-clang'
+alias mvim='rvm system do /usr/local/bin/mvim $@'
 
 # RVM configuration
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

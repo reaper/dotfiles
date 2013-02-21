@@ -38,6 +38,7 @@ git_bundles = [
   "git://github.com/sjl/gundo.vim.git",
   "git://github.com/vim-scripts/L9.git",
   "git://github.com/vim-scripts/FuzzyFinder.git",
+  "git://github.com/nanotech/jellybeans.vim.git",
 ]
 
 require 'fileutils'
