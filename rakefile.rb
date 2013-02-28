@@ -7,8 +7,9 @@ task :default => [:install]
 @vim_files = FileList["vimrc", "vim"]
 @git_files = FileList["gitconfig", "gitignore_global"]
 @zsh_files = FileList["zshrc", "oh-my-zsh/custom/reaper.zsh", "oh-my-zsh/custom/reaper/git_extra.zsh"]
+@script_files = FileList["scripts"]
 
-@files = [@vim_files, @git_files, @zsh_files].flatten
+@files = [@vim_files, @git_files, @zsh_files, @script_files].flatten
 
 desc "Copy files from dotfiles to home directory and build"
 task :install do
