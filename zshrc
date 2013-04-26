@@ -15,7 +15,6 @@ export GREP_COLOR='1;32'
 
 # Aliases
 alias qmake='qmake -spec unsupported/macx-clang'
-alias mvim='rvm system do /usr/local/bin/mvim $@'
 alias logcat='python ~/.scripts/python/logcat.py'
 
 # RVM configuration
