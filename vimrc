@@ -48,7 +48,14 @@ let g:session_autosave='yes' "Save automatically session
 let mapleader=',' "Change mapleader bind key to ','
 
 " Tagbar
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
+  else
+    let g:tagbar_ctags_bin='/usr/bin/ctags'  " Proper Ctags locations
+  endif
+endif
 let g:tagbar_width=30                          " Default is 40
 
 " Enable doxygen syntax
@@ -63,13 +70,28 @@ set tags+=~/.vim/tags/qt4 "Include qt4 tags
 " Key mappings
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <C-F12> :!/usr/local/bin/ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nnoremap <silent> <C-f> :FufCoverageFile<CR>
-nnoremap <silent> <S-D-Left> :NERDTreeToggle<CR>
-nnoremap <silent> <S-D-Right> :NERDTreeToggle<CR>
-nnoremap <silent> <M-D-Right> <c-w>l
-nnoremap <silent> <M-D-Left> <c-w>h
-nnoremap <silent> <M-D-Up> <c-w>k
-nnoremap <silent> <M-D-Down> <c-w>j
+
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    nnoremap <silent> <C-f> :FufCoverageFile<CR>
+    nnoremap <silent> <S-D-Left> :NERDTreeToggle<CR>
+    nnoremap <silent> <S-D-Right> :NERDTreeToggle<CR>
+    nnoremap <silent> <M-D-Right> <c-w>l
+    nnoremap <silent> <M-D-Left> <c-w>h
+    nnoremap <silent> <M-D-Up> <c-w>k
+    nnoremap <silent> <M-D-Down> <c-w>j
+  else
+    nnoremap <silent> <C-f> :FufCoverageFile<CR>
+    nnoremap <silent> <S-A-Left> :NERDTreeToggle<CR>
+    nnoremap <silent> <S-A-Right> :NERDTreeToggle<CR>
+    nnoremap <silent> <S-C-Right> <c-w>l
+    nnoremap <silent> <S-C-Left> <c-w>h
+    nnoremap <silent> <S-C-Up> <c-w>k
+    nnoremap <silent> <S-C-Down> <c-w>j
+  endif
+endif
+
 
 " OmniCppComplete
 let OmniCpp_NamespaceSearch=1
@@ -91,7 +113,14 @@ let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.a', '\.la', '\.dylib', '\.42f'
 colorscheme jellybeans "Use jellybeans colorscheme
 
 " Typo configuration
-set guifont=Monaco:h10 "Set font family
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    set guifont=Monaco:h10 "Set font family
+  else
+    set guifont=Ubuntu\ Mono\ 10
+  endif
+endif
 set noantialias "Set no anti aliasing
 
 " GUI configuration
