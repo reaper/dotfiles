@@ -22,7 +22,6 @@ git_bundles = [
   "git://github.com/hron84/Gemfile.vim.git",
   "git://github.com/kchmck/vim-coffee-script.git",
   "git://github.com/tpope/vim-rvm.git",
-  "git://github.com/vim-scripts/Better-CSS-Syntax-for-Vim.git",
   "git://github.com/ecomba/vim-ruby-refactoring.git",
   "git://github.com/clones/vim-zsh.git",
   "git://github.com/xolox/vim-session.git",
@@ -41,6 +40,8 @@ git_bundles = [
   "git://github.com/nanotech/jellybeans.vim.git",
   "git://github.com/tpope/vim-abolish.git",
   "git://github.com/xolox/vim-misc.git",
+  "git://github.com/scrooloose/syntastic.git",
+  "git://github.com/vim-scripts/rails.vim.git",
 ]
 
 require 'fileutils'
