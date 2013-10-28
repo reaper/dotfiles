@@ -33,6 +33,10 @@ au BufNewFile,BufRead SConstruct,SConscript*,*.py setlocal filetype=python
 au BufNewFile,BufRead *.xhtml,*.css,*.js set expandtab!
 au FileType ruby compiler ruby
 
+" Syntastic
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
 " Undo persistence && GUndo
 set undodir=~/.vim/undodir
 set undofile
