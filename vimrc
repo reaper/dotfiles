@@ -13,6 +13,7 @@ set noswapfile "Don't create swap files
 set expandtab "Replace tabs with spaces
 set tabstop=2 "Default tabstop
 set shiftwidth=2 "Default shiftwidth
+set rnu "Relative number
 
 " Enable plugins and syntax
 filetype on "Enable filetype
