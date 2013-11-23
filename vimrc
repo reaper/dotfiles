@@ -122,7 +122,7 @@ if has("unix")
   if s:uname == "Darwin\n"
     set guifont=Monaco:h10 "Set font family
   else
-    set guifont=Ubuntu\ Mono\ 10
+    set guifont=Ubuntu\ Mono\ 12
   endif
 endif
 set noantialias "Set no anti aliasing
