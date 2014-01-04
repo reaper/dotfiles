@@ -3,7 +3,7 @@ ZSH_THEME="gallois" # theme
 COMPLETION_WAITING_DOTS="true"
 
 # zsh plugins
-plugins=(git rails brew bundler cap gem github osx python rails3 rake rvm screen ssh-keygen svn)
+plugins=(git rails brew bundler cap gem github osx python rails rake rvm screen ssh-keygen svn)
 
 # Paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH #COMMON

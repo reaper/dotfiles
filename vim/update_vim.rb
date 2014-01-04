@@ -31,8 +31,6 @@ git_bundles = [
   "git://github.com/vim-jp/cpp-vim.git",
   "git://github.com/msanders/cocoa.vim.git",
   "git://github.com/vim-scripts/DoxygenToolkit.vim.git",
-  "git://github.com/reaper/vim-fgl-syntax.git",
-  "git://github.com/reaper/vim-per-syntax.git",
   "git://github.com/plasticboy/vim-markdown.git",
   "git://github.com/sjl/gundo.vim.git",
   "git://github.com/vim-scripts/L9.git",

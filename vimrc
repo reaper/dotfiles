@@ -13,7 +13,6 @@ set noswapfile "Don't create swap files
 set expandtab "Replace tabs with spaces
 set tabstop=2 "Default tabstop
 set shiftwidth=2 "Default shiftwidth
-set rnu "Relative number
 
 " Enable plugins and syntax
 filetype on "Enable filetype
@@ -141,3 +140,5 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 ""improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
+
+set rnu "Relative number
