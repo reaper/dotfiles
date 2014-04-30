@@ -11,7 +11,6 @@ git_bundles = [
   "git://github.com/tpope/vim-haml.git",
   "git://github.com/tpope/vim-rails.git",
   "git://github.com/tpope/vim-surround.git",
-  "git://github.com/tsaleh/vim-matchit.git",
   "git://github.com/vim-ruby/vim-ruby.git",
   "git://github.com/vim-scripts/Gist.vim.git",
   "git://github.com/vim-scripts/jQuery.git",
@@ -55,5 +54,6 @@ Dir["*"].each {|d| FileUtils.rm_rf d }
 git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
   puts "unpacking #{url} into #{dir}"
-  `git clone #{url} #{dir}`
+  system "git clone #{url} #{dir}"
+  system "cd #{dir} && git submodule update --init --recursive"
 end
