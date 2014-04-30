@@ -11,17 +11,25 @@ task :default => [:install]
 
 @files = [@vim_files, @git_files, @zsh_files, @script_files].flatten
 
+
 desc "Copy files from dotfiles to home directory and build"
 task :install do
   # Backup files
   Rake::Task["backup"].invoke
+
   # Replace files from dotfiles folder to home
   Rake::Task["replace"].invoke
+
   # Cleanup dotfiles backup folder 
   Rake::Task["cleanup"].invoke
+
   # Update vim plugins
   Rake::Task["get_vim_plugins"].invoke
+
+  # Post install
+  Rake::Task["post_install"].invoke
 end
+
 
 desc "Cleanup backup directory"
 task :cleanup do
@@ -50,6 +58,7 @@ task :cleanup do
   end
 end
 
+
 desc "Backup dot files"
 task :backup do
 
@@ -65,6 +74,7 @@ task :backup do
   puts "Done."
 end
 
+
 desc "Replace files"
 task :replace do
 
@@ -75,6 +85,7 @@ task :replace do
 
   puts "Done."
 end
+
 
 desc "Get vim plugins"
 task :get_vim_plugins do
@@ -89,6 +100,24 @@ task :get_vim_plugins do
 
   puts "Done."
 end
+
+
+desc "Do post installation tasks"
+task :post_install do
+
+  puts "\nPost install tasks"
+  puts "------------------------------------------------"
+
+  cmds << "sudo apt install -y clang exuberant-ctags"
+  cmds << "cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
+
+  for cmd in cmds
+    system cmd
+  end
+
+  puts "Done."
+end
+
 
 # Copy files from a source dir to a destination dir
 def copy_files(files, source_dir, destination_dir)
