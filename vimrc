@@ -34,7 +34,7 @@ au BufNewFile,BufRead *.xhtml,*.css,*.js set expandtab!
 au FileType ruby compiler ruby
 
 " Syntastic
-let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 " Undo persistence && GUndo
