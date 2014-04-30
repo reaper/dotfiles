@@ -109,7 +109,7 @@ task :post_install do
   puts "------------------------------------------------"
 
   cmds = []
-  cmds << "sudo apt install -y clang exuberant-ctags"
+  cmds << "sudo apt install -y build-essential cmake python-dev clang exuberant-ctags"
   cmds << "cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer"
 
   for cmd in cmds

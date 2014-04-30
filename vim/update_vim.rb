@@ -3,7 +3,6 @@
 git_bundles = [ 
   "git://github.com/astashov/vim-ruby-debugger.git",
   "git://github.com/majutsushi/tagbar.git",
-  "git://github.com/ervandew/supertab.git",
   "git://github.com/vim-scripts/The-NERD-tree.git",
   "git://github.com/vim-scripts/The-NERD-Commenter.git",
   "git://github.com/tomtom/tcomment_vim.git",
