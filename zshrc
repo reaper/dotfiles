@@ -13,10 +13,6 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
-# Aliases
-alias qmake='qmake -spec unsupported/macx-clang'
-alias logcat='python ~/.scripts/python/logcat.py'
-
 # RVM configuration
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 

@@ -26,7 +26,6 @@ git_bundles = [
   "git://github.com/clones/vim-zsh.git",
   "git://github.com/xolox/vim-session.git",
   "git://github.com/nathanaelkane/vim-indent-guides.git",
-  "git://github.com/jabbourb/omnicpp.git",
   "https://bitbucket.org/kh3phr3n/vim-qt-syntax.git",
   "git://github.com/vim-jp/cpp-vim.git",
   "git://github.com/msanders/cocoa.vim.git",
@@ -40,6 +39,7 @@ git_bundles = [
   "git://github.com/xolox/vim-misc.git",
   "git://github.com/scrooloose/syntastic.git",
   "git://github.com/vim-scripts/rails.vim.git",
+  "git://github.com/Valloric/YouCompleteMe.git",
 ]
 
 require 'fileutils'
@@ -56,5 +56,4 @@ git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
   puts "unpacking #{url} into #{dir}"
   `git clone #{url} #{dir}`
-  FileUtils.rm_rf(File.join(dir, ".git"))
 end

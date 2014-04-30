@@ -34,7 +34,7 @@ au BufNewFile,BufRead *.xhtml,*.css,*.js set expandtab!
 au FileType ruby compiler ruby
 
 " Syntastic
-let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 " Undo persistence && GUndo
@@ -44,6 +44,9 @@ set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 let g:gundo_width = 60
 let g:gundo_preview_height = 40
+
+" YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 " Session
 let g:session_autosave='yes' "Save automatically session
@@ -97,18 +100,6 @@ if has("unix")
 endif
 
 
-" OmniCppComplete
-let OmniCpp_NamespaceSearch=1
-let OmniCpp_GlobalScopeSearch=1
-let OmniCpp_ShowAccess=1
-let OmniCpp_ShowPrototypeInAbbr=1 " show function parameters
-let OmniCpp_MayCompleteDot=1 " autocomplete after .
-let OmniCpp_MayCompleteArrow=1 " autocomplete after ->
-let OmniCpp_MayCompleteScope=1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-
 " NERDTREE
 let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.a', '\.la', '\.dylib', '\.42f', '\.42m', '\.42r']
 
@@ -122,7 +113,7 @@ if has("unix")
   if s:uname == "Darwin\n"
     set guifont=Monaco:h10 "Set font family
   else
-    set guifont=Ubuntu\ Mono\ 12
+    set guifont=Ubuntu\ Mono\ 11
   endif
 endif
 set noantialias "Set no anti aliasing
