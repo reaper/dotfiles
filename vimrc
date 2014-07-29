@@ -46,7 +46,7 @@ let g:gundo_width = 60
 let g:gundo_preview_height = 40
 
 " YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 " Session
 let g:session_autosave='yes' "Save automatically session
