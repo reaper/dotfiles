@@ -10,10 +10,10 @@ Installation
 ============
 
 It will
-  - Backup dotfiles
-  - Copy dotfiles to the home directory
-  - Download vim plugins
+  - Prepare home folder
+  - Bootstrap janus
+  - Symlink dotfiles to the home directory
 
 ```bash
-rake install
+rake
 ```
