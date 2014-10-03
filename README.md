@@ -15,5 +15,6 @@ It will
   - Symlink dotfiles to the home directory
 
 ```bash
+git submodule update --init
 rake
 ```
