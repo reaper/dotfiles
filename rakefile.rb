@@ -1,5 +1,5 @@
 janus_dotfiles_exclude = %w(.vimrc .gvimrc)
-dotfiles = %w(.vim .vimrc .gvimrc .vimrc.after .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom)
+dotfiles = %w(.vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom)
 
 task :init => [:prepare_home, :bootstrap_janus, :make_symlinks] do
 end

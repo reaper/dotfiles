@@ -14,7 +14,8 @@ It will
   - Bootstrap janus
   - Symlink dotfiles to the home directory
 
+Just run the following command to install dotfiles:
+
 ```bash
-git submodule update --init
-rake
+curl https://raw.githubusercontent.com/reaper/dotfiles/master/install-dotfiles.sh | bash
 ```
