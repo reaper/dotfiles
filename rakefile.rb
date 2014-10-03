@@ -1,5 +1,5 @@
 janus_dotfiles_exclude = %w(.vimrc .gvimrc)
-dotfiles = %w(.vim .vimrc .gvimrc .vimrc.after .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc)
+dotfiles = %w(.vim .vimrc .gvimrc .vimrc.after .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom)
 
 task :init => [:prepare_home, :bootstrap_janus, :make_symlinks] do
 end
@@ -8,7 +8,7 @@ desc "Prepare home folder"
 task :prepare_home do
   for dotfile in dotfiles
     dotfile_expanded_path = File.join File.expand_path("~"), dotfile
-    rm dotfile_expanded_path, verbose: true if File.exists? dotfile_expanded_path
+    rm_r dotfile_expanded_path, verbose: true if File.exists? dotfile_expanded_path
   end
 end
 

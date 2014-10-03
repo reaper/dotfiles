@@ -1,5 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="gallois" # theme
+ZSH_CUSTOM=$HOME/.zsh_custom
 COMPLETION_WAITING_DOTS="true"
 
 # zsh plugins
