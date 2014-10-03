@@ -8,12 +8,7 @@ desc "Prepare home folder"
 task :prepare_home do
   for dotfile in dotfiles
     dotfile_expanded_path = File.join File.expand_path("~"), dotfile
-
-    if File.exists? dotfile_expanded_path
-      dotfile_expanded_back_path = dotfile_expanded_path + "_back"
-      rm_r dotfile_expanded_back_path, verbose: true if File.exists? dotfile_expanded_back_path
-      mv dotfile_expanded_path, dotfile_expanded_back_path, verbose: true
-    end
+    rm dotfile_expanded_path, verbose: true if File.exists? dotfile_expanded_path
   end
 end
 
