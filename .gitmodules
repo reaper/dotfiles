@@ -4,3 +4,9 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
+[submodule ".janus/incsearch"]
+	path = .janus/incsearch
+	url = git@github.com:haya14busa/incsearch.vim.git
+[submodule ".janus/airline"]
+	path = .janus/airline
+	url = git@github.com:bling/vim-airline.git

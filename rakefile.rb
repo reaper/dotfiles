@@ -1,5 +1,5 @@
 janus_dotfiles_exclude = %w(.vimrc .gvimrc)
-dotfiles = %w(.vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom)
+dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom)
 
 task :init => [:prepare_home, :bootstrap_janus, :make_symlinks] do
 end
@@ -14,7 +14,7 @@ end
 
 desc "Boostrap janus"
 task :bootstrap_janus do
-  sh "cd .vim && rake"
+  sh "cd .vim && git checkout master && git pull && rake"
 end
 
 desc "Make symlinks of all files into home folder"
