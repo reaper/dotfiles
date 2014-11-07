@@ -1,7 +1,16 @@
 janus_dotfiles_exclude = %w(.vimrc .gvimrc)
 dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom)
 
-task :init => [:prepare_home, :bootstrap_janus, :make_symlinks] do
+task :init => [:prepare_dotfiles, :prepare_home, :bootstrap_janus, :make_symlinks] do
+end
+
+desc "Prepare dotfiles"
+task :prepare_dotfiles do
+  submodule_up_cmd = "git submodule update --init"
+  sh submodule_up_cmd
+  for plugin in Dir.glob File.join(".janus", "*")
+    sh "cd #{plugin} && #{submodule_up_cmd}"
+  end
 end
 
 desc "Prepare home folder"

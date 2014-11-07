@@ -22,4 +22,4 @@ if has("unix")
   endif
 endif
 
-let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.a', '\.la', '\.dylib', '\.42f', '\.42m', '\.42r']
+let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.a', '\.la', '\.dylib', '\.42f', '\.42m', '\.42r', '\.pyc']
