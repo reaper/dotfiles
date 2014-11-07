@@ -7,5 +7,4 @@ git clone https://github.com/reaper/dotfiles.git .dotfiles
 
 echo "Running rake into dotfiles folder"
 cd .dotfiles
-git submodule update --init
 rake
