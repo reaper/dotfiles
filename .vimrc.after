@@ -23,3 +23,7 @@ if has("unix")
 endif
 
 let NERDTreeIgnore = ['^moc_*', '\.o', '\.os', '\.a', '\.la', '\.dylib', '\.42f', '\.42m', '\.42r', '\.pyc']
+
+
+"GITGUTTER
+let g:gitgutter_sign_column_always = 1
