@@ -16,3 +16,6 @@
 [submodule ".janus/gitgutter"]
 	path = .janus/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule ".janus/startify"]
+	path = .janus/startify
+	url = https://github.com/mhinz/vim-startify
