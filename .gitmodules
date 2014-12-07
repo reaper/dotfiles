@@ -22,3 +22,6 @@
 [submodule ".tools/themes/qt/wombat-theme"]
 	path = .tools/themes/qt/wombat-theme
 	url = https://github.com/alexpana/qt-creator-wombat-theme
+[submodule ".janus/maximizer"]
+	path = .janus/maximizer
+	url = https://github.com/szw/vim-maximizer.git
