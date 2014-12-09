@@ -19,6 +19,3 @@
 [submodule ".janus/startify"]
 	path = .janus/startify
 	url = https://github.com/mhinz/vim-startify
-[submodule ".tools/themes/qt/wombat-theme"]
-	path = .tools/themes/qt/wombat-theme
-	url = https://github.com/alexpana/qt-creator-wombat-theme
