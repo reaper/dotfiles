@@ -1,5 +1,8 @@
 # ZSH configuration file
 # Created by Pierre FILSTROFF
+#
+#COMMON
+export TOOLS_HOME=/usr/local/tools
 
 #FGL
 export FGLDIR=/opt/fourjs/fglgws/current #FGLDIR
@@ -15,16 +18,19 @@ export FJS_DISTRIB_FOLDER=/work/distrib
 
 # JAVA / ANDROID
 export JDK_HOME=/usr/lib/jvm/java-8-oracle #JDKHOME
-export ANDROID=/opt/local/tools/64bits/android #ANDROID
+export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
 export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
 export ANDROID_NDK_HOME=$ANDROID/ndk/current #ANDROID HOME
 export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 # QT
-export PATH=/opt/local/tools/64bits/qtcreator/bin:/opt/local/tools/64bits/qt/current/bin:$PATH
+export QTCREATOR_HOME=$TOOLS_HOME/64bits/qtcreator/current
+export QTDIR=$TOOLS_HOME/64bits/qt/current
+export PATH=$QTCREATOR_HOME/bin:$QTDIR/bin:$PATH
+
 # GENYMOTION
-export PATH=/opt/local/tools/64bits/genymotion:$PATH
+export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 
 #ALIASES
 #FGL
