@@ -25,3 +25,6 @@
 [submodule ".tools/themes/qt/wombat-theme"]
 	path = .tools/themes/qt/wombat-theme
 	url = https://github.com/reaper/qt-creator-wombat-theme.git
+[submodule ".tools/themes/qt/qtcreator-themes"]
+	path = .tools/themes/qt/qtcreator-themes
+	url = https://github.com/procedural/qtcreator-themes
