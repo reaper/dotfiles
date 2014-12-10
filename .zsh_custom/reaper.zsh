@@ -44,5 +44,8 @@ alias route_to_local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eth0'
 #ANDROID
 alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"
 
+#QT
+alias qtcreator="qtcreator -stylesheet $HOME/.tools/themes/qt/wombat-theme/stylesheet.css"
+
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/*.zsh
