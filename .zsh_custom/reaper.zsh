@@ -28,6 +28,7 @@ export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export QTCREATOR_HOME=$TOOLS_HOME/64bits/qtcreator/current
 export QTDIR=$TOOLS_HOME/64bits/qt/current
 export PATH=$QTCREATOR_HOME/bin:$QTDIR/bin:$PATH
+export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
 
 # GENYMOTION
 export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
