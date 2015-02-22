@@ -22,9 +22,9 @@
 [submodule ".janus/maximizer"]
 	path = .janus/maximizer
 	url = https://github.com/szw/vim-maximizer.git
-;[submodule ".dotfiles/themes/qt/wombat-theme"]
-	;path = .dotfiles/themes/qt/wombat-theme
-	;url = https://github.com/reaper/qt-creator-wombat-theme.git
-;[submodule ".dotfiles/themes/qt/qtcreator-themes"]
-	;path = .dotfiles/themes/qt/qtcreator-themes
-	;url = https://github.com/procedural/qtcreator-themes
+[submodule ".dotfiles/themes/qt/wombat-theme"]
+	path = .dotfiles/themes/qt/wombat-theme
+	url = https://github.com/reaper/qt-creator-wombat-theme.git
+[submodule ".dotfiles/themes/qt/qtcreator-themes"]
+	path = .dotfiles/themes/qt/qtcreator-themes
+	url = https://github.com/procedural/qtcreator-themes
