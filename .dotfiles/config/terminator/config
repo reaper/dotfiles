@@ -1,5 +1,4 @@
 [global_config]
-  window_state = maximise
   handle_size = 1
   title_hide_sizetext = True
   always_split_with_profile = True
@@ -25,11 +24,13 @@
     copy_on_selection = True
     scrollback_infinite = True
   [[reaper]]
-    background_image = None
+    scrollbar_position = hidden
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     font = Sans 10
     background_darkness = 0.91
     background_type = transparent
-    scrollbar_position = hidden
+    background_image = None
+    foreground_color = "#ffffff"
     login_shell = True
     copy_on_selection = True
     scrollback_infinite = True
