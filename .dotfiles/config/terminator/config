@@ -25,12 +25,12 @@
     copy_on_selection = True
     scrollback_infinite = True
   [[reaper]]
-    scrollbar_position = hidden
-    use_system_font = False
-    login_shell = True
+    background_image = None
+    font = Sans 10
     background_darkness = 0.91
     background_type = transparent
-    background_image = None
+    scrollbar_position = hidden
+    login_shell = True
     copy_on_selection = True
     scrollback_infinite = True
 [layouts]
