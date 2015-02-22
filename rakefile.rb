@@ -1,5 +1,5 @@
 janus_dotfiles_exclude = %w(.vimrc .gvimrc)
-dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom .tools)
+dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom .dotfiles)
 
 def file_exists_or_symlink path
   File.exists?(path) || File.symlink?(path)
@@ -49,8 +49,10 @@ task :make_symlinks do
     ln_s dotfile_expanded_path, dest_dotfile_expanded_path, verbose: true
   end
 
+  dotfiles_home_path = File.join home_path, ".dotfiles"
+
   puts "\nCreate applications symbolik links"
-  tools_path = File.join home_path, ".tools"
+  tools_path = File.join dotfiles_home_path, ".tools"
   styles_path = File.join home_path, ".config", "QtProject", "qtcreator", "styles"
   mkdir_p styles_path, verbose: true unless File.exists?(styles_path)
 
