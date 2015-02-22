@@ -1,0 +1,76 @@
+[global_config]
+  window_state = maximise
+  handle_size = 1
+  title_hide_sizetext = True
+  always_split_with_profile = True
+  sticky = True
+  title_inactive_fg_color = "#ffffff"
+  always_on_top = True
+  borderless = True
+  title_receive_bg_color = "#000000"
+  title_transmit_bg_color = "#000000"
+  hide_from_taskbar = True
+  dbus = True
+  title_inactive_bg_color = "#000000"
+[keybindings]
+  hide_window = <Alt>ampersand
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    login_shell = True
+    background_darkness = 0.91
+    background_type = transparent
+    background_image = None
+    copy_on_selection = True
+    scrollback_infinite = True
+  [[reaper]]
+    scrollbar_position = hidden
+    use_system_font = False
+    login_shell = True
+    background_darkness = 0.91
+    background_type = transparent
+    background_image = None
+    copy_on_selection = True
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+  [[reaper]]
+    [[[child0]]]
+      position = 0:89
+      type = Window
+      order = 0
+      parent = ""
+      size = 1280, 1024
+    [[[child1]]]
+      position = 640
+      type = HPaned
+      order = 0
+      parent = child0
+    [[[child3]]]
+      position = 512
+      type = VPaned
+      order = 1
+      parent = child1
+    [[[terminal2]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child1
+    [[[terminal5]]]
+      profile = default
+      type = Terminal
+      order = 1
+      parent = child3
+    [[[terminal4]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child3
+[plugins]
