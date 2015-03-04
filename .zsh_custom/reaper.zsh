@@ -46,7 +46,7 @@ alias route_to_local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eth0'
 alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"
 
 #QT
-alias qtcreator="qtcreator -stylesheet $HOME/.dotfiles/tools/themes/qt/wombat-theme/stylesheet.css"
+alias qtcreator="qtcreator -stylesheet $HOME/.dotfiles/themes/qt/wombat-theme/stylesheet.css"
 
 #TERMINATOR
 alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/config -l reaper -p reaper"

@@ -52,19 +52,18 @@ task :make_symlinks do
   dotfiles_home_path = File.join home_path, ".dotfiles"
 
   puts "\nCreate applications symbolik links"
-  tools_path = File.join dotfiles_home_path, ".tools"
   styles_path = File.join home_path, ".config", "QtProject", "qtcreator", "styles"
   mkdir_p styles_path, verbose: true unless File.exists?(styles_path)
 
   #QTCreator wombat colorscheme
-  tools_wombat_colorscheme_path = File.join tools_path, "themes", "qt", "wombat-theme", "wombat-style.xml"
+  tools_wombat_colorscheme_path = File.join dotfiles_home_path, "themes", "qt", "wombat-theme", "wombat-style.xml"
   wombat_colorscheme_path = File.join styles_path, "wombat-style.xml"
 
   rm_r wombat_colorscheme_path, verbose: true if file_exists_or_symlink(wombat_colorscheme_path)
   ln_s tools_wombat_colorscheme_path, wombat_colorscheme_path, verbose: true
 
   #QTCreator themes
-  for theme_file_path in Dir.glob(File.join(tools_path, "themes", "qt", "qtcreator-themes", "*.xml"))
+  for theme_file_path in Dir.glob(File.join(dotfiles_home_path, "themes", "qt", "qtcreator-themes", "*.xml"))
     style_file_path = File.join styles_path, File.basename(theme_file_path)
 
     rm_r style_file_path, verbose: true if file_exists_or_symlink(style_file_path)
