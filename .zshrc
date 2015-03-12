@@ -4,7 +4,7 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 COMPLETION_WAITING_DOTS="true"
 
 # zsh plugins
-plugins=(git rails brew bundler cap gem github osx python rails rake rvm screen ssh-keygen svn)
+plugins=(rails brew bundler gem python rails rake rvm screen ssh-keygen svn tmux bower colorize copyfile copydir git git-extras gitignore ubuntu)
 
 # Paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH #COMMON
