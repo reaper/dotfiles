@@ -1,5 +1,5 @@
 janus_dotfiles_exclude = %w(.vimrc .gvimrc)
-dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom .dotfiles)
+dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom .dotfiles .tmux.conf)
 
 def file_exists_or_symlink path
   File.exists?(path) || File.symlink?(path)
