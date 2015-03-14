@@ -28,6 +28,3 @@
 [submodule ".dotfiles/themes/qt/qtcreator-themes"]
 	path = .dotfiles/themes/qt/qtcreator-themes
 	url = https://github.com/procedural/qtcreator-themes
-[submodule ".tools"]
-	path = .tools
-	url = https://github.com/reaper/tools.git
