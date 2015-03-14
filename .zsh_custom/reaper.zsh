@@ -4,18 +4,6 @@
 #COMMON
 export TOOLS_HOME=/usr/local/tools
 
-#FGL
-export FGLDIR=/opt/fourjs/fglgws/current #FGLDIR
-export FGLASDIR=/opt/fourjs/gas/current #FGLASDIR
-export FGLGDCDIR=/opt/fourjs/gdc/current #FGLGDCDIR
-export PATH=$PATH:$FGLDIR/bin #Fourjs bin path
-
-#CLIENTQA
-export FGLQADIR=~/Fourjs/Projects/git/clientqa
-
-#RUBTOOLS
-export FJS_DISTRIB_FOLDER=/work/distrib
-
 # JAVA / ANDROID
 export JDK_HOME=/usr/lib/jvm/java-8-oracle #JDKHOME
 export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
@@ -34,14 +22,6 @@ export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
 export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 
 #ALIASES
-#FGL
-alias gdc='$FGLGDCDIR/bin/gdc -aD'
-alias fglform='fglform -M'
-alias fglcomp='fglcomp -M'
-
-#COMMON
-alias route_to_local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eth0'
-
 #ANDROID
 alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"
 
