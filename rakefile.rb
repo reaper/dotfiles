@@ -12,7 +12,7 @@ end
 desc "Prepare dotfiles"
 task :prepare_dotfiles do
   puts "\nUpdate submodules"
-  submodule_up_cmd = "git submodule update --init"
+  submodule_up_cmd = "git submodule update --init --remote"
   sh submodule_up_cmd
 
   puts "\nUpdating plugins submodules"

@@ -20,3 +20,8 @@ alias fglcomp='fglcomp -M'
 
 #COMMON
 alias route_to_local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eth0'
+
+# Compile sources in a folder
+function fglcomp_all() {
+  ruby $HOME/.dotfiles/tools/ruby/fourjs/fglcomp_all.rb
+}
