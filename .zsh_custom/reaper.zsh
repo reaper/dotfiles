@@ -31,6 +31,13 @@ alias qtcreator="qtcreator -stylesheet $HOME/.dotfiles/themes/qt/wombat-theme/st
 #TERMINATOR
 alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/config -l reaper -p reaper"
 
+# Upgrade system
+function upgrade_system() {
+  sudo apt-get update -y
+  sudo apt-get upgrade -y
+  sudo apt-get dist-upgrade -y
+}
+
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/git_extra.zsh
 source $ZSH_CUSTOM/reaper/fourjs.zsh
