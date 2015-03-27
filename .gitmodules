@@ -10,9 +10,6 @@
 [submodule ".janus/airline"]
 	path = .janus/airline
 	url = https://github.com/bling/vim-airline
-[submodule ".janus/jedi"]
-	path = .janus/jedi
-	url = https://github.com/davidhalter/jedi-vim
 [submodule ".janus/gitgutter"]
 	path = .janus/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
