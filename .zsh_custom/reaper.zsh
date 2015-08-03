@@ -22,6 +22,9 @@ export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
 export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 
 #ALIASES
+#COMMON
+alias open="xdg-open"
+
 #ANDROID
 alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"
 
