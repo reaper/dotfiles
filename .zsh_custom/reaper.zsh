@@ -6,6 +6,7 @@ export TOOLS_HOME=/usr/local/tools
 
 # JAVA / ANDROID
 export JDK_HOME=/usr/lib/jvm/java-8-oracle #JDKHOME
+export JAVA_HOME=$JDK_HOME #JAVAHOME
 export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
 export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
