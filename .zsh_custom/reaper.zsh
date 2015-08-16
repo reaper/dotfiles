@@ -27,6 +27,8 @@ export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 #ALIASES
 #COMMON
 alias open="xdg-open"
+alias cp="rsync -ah --progress"
+alias mkdir="mkdir -v"
 
 #ANDROID
 alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"
