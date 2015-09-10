@@ -1,10 +1,11 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="gallois" # theme
+ZSH_THEME="agnoster" # theme
 ZSH_CUSTOM=$HOME/.zsh_custom
 COMPLETION_WAITING_DOTS="true"
+DEFAULT_USER="reaper"
 
 # zsh plugins
-plugins=(rails brew bundler gem python rails rake rvm screen ssh-keygen svn bower colorize copyfile copydir git git-extras gitignore ubuntu)
+plugins=(rails brew bundler gem python rails rake rvm screen ssh-keygen svn bower colorize copyfile copydir git git-extras gitignore ubuntu cap common-aliases gradle web-search wd completion)
 
 # Paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH #COMMON
