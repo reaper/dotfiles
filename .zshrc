@@ -5,7 +5,7 @@ COMPLETION_WAITING_DOTS="true"
 DEFAULT_USER="reaper"
 
 # zsh plugins
-plugins=(rails brew bundler gem python rails rake rvm screen ssh-keygen svn bower colorize copyfile copydir git git-extras gitignore ubuntu cap common-aliases gradle web-search wd completion)
+plugins=(rails brew bundler gem python rails rake rvm screen ssh-keygen svn bower colorize copyfile copydir git git-extras gitignore ubuntu cap common-aliases gradle web-search wd)
 
 # Paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH #COMMON
