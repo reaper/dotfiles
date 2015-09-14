@@ -10,10 +10,15 @@ export JAVA_HOME=$JDK_HOME #JAVAHOME
 export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
 export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
-BUILD_TOOLS_LATEST_VERSION=`ls -1 $ANDROID_HOME/build-tools | sort -r | head -n 1`
-export ANDROID_BUILD_TOOLS_HOME=$ANDROID_HOME/build-tools/$BUILD_TOOLS_LATEST_VERSION
 export ANDROID_NDK_HOME=$ANDROID/ndk/current #ANDROID HOME
-export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_BUILD_TOOLS_HOME:$PATH
+export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+
+# Add latest buildtools to the path
+if [ -d "$ANDROID_HOME/build-tools" ]; then
+  BUILD_TOOLS_LATEST_VERSION=`ls -1 $ANDROID_HOME/build-tools | sort -r | head -n 1`
+  export PATH=$ANDROID_HOME/build-tools/$BUILD_TOOLS_LATEST_VERSION:$PATH
+fi
+
 
 # QT
 export QTCREATOR_HOME=$TOOLS_HOME/64bits/qtcreator/current
