@@ -1,5 +1,4 @@
 [global_config]
-  window_state = maximise
   handle_size = 1
   title_hide_sizetext = True
   always_split_with_profile = True

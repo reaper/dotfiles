@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="agnoster" # theme
+ZSH_THEME="gallois"
 ZSH_CUSTOM=$HOME/.zsh_custom
 COMPLETION_WAITING_DOTS="true"
 DEFAULT_USER="reaper"
@@ -14,6 +14,8 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # GREP options
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
+
+export TERM="xterm-256color"
 
 # RVM configuration
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
