@@ -32,4 +32,5 @@ function post-boot() {
   screen -mdS chromium chromium-browser
   screen -mdS spotify spotify
   screen -mdS corebird corebird
+  screen -mdS thunderbird thunderbird
 }
