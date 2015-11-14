@@ -22,6 +22,14 @@ alias fglcomp='fglcomp -M'
 alias route_to_local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eth0'
 
 # Compile sources in a folder
-function fglcomp_all() {
+function fglcomp-all() {
   ruby $HOME/.dotfiles/tools/ruby/fourjs/fglcomp_all.rb
+}
+
+# Post boot screen applications
+function post-boot() {
+  screen -mdS skype skype
+  screen -mdS chromium chromium-browser
+  screen -mdS spotify spotify
+  screen -mdS corebird corebird
 }
