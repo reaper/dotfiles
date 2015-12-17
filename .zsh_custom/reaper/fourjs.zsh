@@ -33,4 +33,5 @@ function post-boot() {
   screen -mdS spotify spotify
   screen -mdS corebird corebird
   screen -mdS thunderbird thunderbird
+  screen -mdS dude git dude ~/.git-dude
 }
