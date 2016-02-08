@@ -42,3 +42,6 @@
 	default = matching
 [webui]
 	autoupdate = true
+[dude]
+	icon = ~/.git-dude/git_logo.png
+	interval = 30
