@@ -61,14 +61,6 @@ task :make_symlinks do
 
   rm_r wombat_colorscheme_path, verbose: true if file_exists_or_symlink(wombat_colorscheme_path)
   ln_s tools_wombat_colorscheme_path, wombat_colorscheme_path, verbose: true
-
-  #QTCreator themes
-  for theme_file_path in Dir.glob(File.join(dotfiles_home_path, "themes", "qt", "qtcreator-themes", "*.xml"))
-    style_file_path = File.join styles_path, File.basename(theme_file_path)
-
-    rm_r style_file_path, verbose: true if file_exists_or_symlink(style_file_path)
-    ln_s theme_file_path, style_file_path, verbose: true
-  end
 end
 
 task :default => :init
