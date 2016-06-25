@@ -32,7 +32,6 @@ export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 #ALIASES
 #COMMON
 alias open="xdg-open"
-alias cp="rsync -ah --progress"
 alias mkdir="mkdir -v"
 
 #ANDROID
@@ -48,3 +47,4 @@ alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/config -
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
 source $ZSH_CUSTOM/reaper/fourjs.zsh
+source $ZSH_CUSTOM/reaper/android.zsh

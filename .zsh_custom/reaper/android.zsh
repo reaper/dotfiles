@@ -9,3 +9,13 @@ function adb-forward() {
       echo "Forwarded port $port"
   done
 }
+
+# ADB push all in current directory
+function adb-push-all() {
+  for folder in "$@"
+    do
+      for file (*.*) {
+        adb push $file $folder
+      }
+  done
+}

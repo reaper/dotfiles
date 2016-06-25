@@ -4,9 +4,9 @@
 
 # Upgrade system
 function r-upgrade-system() {
-  sudo apt-get update -y
-  sudo apt-get upgrade -y
-  sudo apt-get dist-upgrade -y
+  sudo apt update -y
+  sudo apt upgrade -y
+  sudo apt dist-upgrade -y
 }
 alias upgrade-system=r-upgrade-system
 

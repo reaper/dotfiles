@@ -10,11 +10,6 @@ plugins=(rails brew bundler gem python rails rake rvm screen ssh-keygen svn bowe
 # Paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH #COMMON
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# GREP options
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
-
 export TERM="xterm-256color"
 
 # RVM configuration
@@ -22,3 +17,5 @@ export TERM="xterm-256color"
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
