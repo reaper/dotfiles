@@ -1,11 +1,10 @@
-janus_dotfiles_exclude = %w(.vimrc .gvimrc)
-dotfiles = %w(.janus .vim .vimrc .gvimrc .vimrc.after .vimrc.before .gvimrc.after .gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom .dotfiles)
+dotfiles = %w(.gitconfig .gitignore_global .oh-my-zsh .zshrc .zsh_custom .dotfiles)
 
 def file_exists_or_symlink path
   File.exists?(path) || File.symlink?(path)
 end
 
-task :init => [:prepare_dotfiles, :prepare_home, :bootstrap_janus, :make_symlinks] do
+task :init => [:prepare_dotfiles, :prepare_home, :make_symlinks] do
   puts "Done"
 end
 
@@ -14,11 +13,6 @@ task :prepare_dotfiles do
   puts "\nUpdate submodules"
   submodule_up_cmd = "git submodule update --init --remote"
   sh submodule_up_cmd
-
-  puts "\nUpdating plugins submodules"
-  for plugin in Dir.glob File.join(".janus", "*")
-    sh "cd #{plugin} && #{submodule_up_cmd}"
-  end
 end
 
 desc "Prepare home folder"
@@ -32,18 +26,12 @@ task :prepare_home do
   end
 end
 
-desc "Boostrap janus"
-task :bootstrap_janus do
-  puts "\nInitializing janus"
-  sh "cd .vim && git checkout master && git pull && rake"
-end
-
 desc "Make symlinks of all files into home folder"
 task :make_symlinks do
   home_path = File.expand_path("~")
 
   puts "\nCreate home symbolik links"
-  for dotfile in dotfiles - janus_dotfiles_exclude
+  for dotfile in dotfiles
     dotfile_expanded_path = File.expand_path(dotfile)
     dest_dotfile_expanded_path = File.join home_path, dotfile
     ln_s dotfile_expanded_path, dest_dotfile_expanded_path, verbose: true
