@@ -11,7 +11,7 @@ end
 desc "Prepare dotfiles"
 task :prepare_dotfiles do
   puts "\nUpdate submodules"
-  sh "git submodule update"
+  sh "git submodule update --init --remote"
 
   # Install vim-plug
   dotfiles_plug_path = File.join(File.dirname(__FILE__), ".dotfiles", "config", "nvim", "autoload", "plug.vim")
