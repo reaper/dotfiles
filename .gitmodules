@@ -7,3 +7,6 @@
 [submodule ".dotfiles/tools"]
 	path = .dotfiles/tools
 	url = https://github.com/reaper/tools.git
+[submodule ".dotfiles/bin/neovim-gnome-terminal-wrapper"]
+	path = .dotfiles/bin/neovim-gnome-terminal-wrapper
+	url = https://github.com/fmoralesc/neovim-gnome-terminal-wrapper.git

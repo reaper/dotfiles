@@ -21,3 +21,5 @@ function r-reload-zsh() {
   source ~/.zshrc
 }
 alias reload-zsh=r-reload-zsh
+
+alias gvim=~/.dotfiles/bin/neovim-gnome-terminal-wrapper/nvim-wrapper
