@@ -7,3 +7,7 @@
 [submodule ".dotfiles/bin/neovim-gnome-terminal-wrapper"]
 	path = .dotfiles/bin/neovim-gnome-terminal-wrapper
 	url = https://github.com/fmoralesc/neovim-gnome-terminal-wrapper.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+	branch = master
