@@ -6,17 +6,36 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/vim-easy-align'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fireplace'
-
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-rails'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'tacahiroy/ctrlp-funky'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown'
+Plug 'groenewege/vim-less'
+Plug 'othree/html5.vim'
+Plug 'tpope/vim-haml'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-sensible'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'tpope/vim-bundler'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'tpope/vim-rake'
+Plug 'nathanaelkane/vim-indent-guides'
+
 
 " Colorscheme
 Plug 'tomasr/molokai'
@@ -29,7 +48,9 @@ let mapleader = ","
 syntax on
 filetype plugin indent on
 
-colorscheme molokai
+if filereadable(expand("plugged/molokai/molokai.vim"))
+  colorscheme molokai
+endif
 
 nnoremap <C-S-Up> :wincmd k<CR>
 nnoremap <C-S-Down> :wincmd j<CR>
