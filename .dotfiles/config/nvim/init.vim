@@ -48,7 +48,8 @@ let mapleader = ","
 syntax on
 filetype plugin indent on
 
-if filereadable(expand("plugged/molokai/molokai.vim"))
+"load molokai if exists
+if filereadable(expand("plugged/molokai/colors/molokai.vim"))
   colorscheme molokai
 endif
 
