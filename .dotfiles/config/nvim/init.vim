@@ -35,6 +35,8 @@ Plug 'tpope/vim-bundler'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-rake'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 
 " Colorscheme
@@ -49,9 +51,7 @@ syntax on
 filetype plugin indent on
 
 "load molokai if exists
-if filereadable(expand("plugged/molokai/colors/molokai.vim"))
-  colorscheme molokai
-endif
+silent! colorscheme molokai
 
 nnoremap <C-S-Up> :wincmd k<CR>
 nnoremap <C-S-Down> :wincmd j<CR>
@@ -90,3 +90,6 @@ imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
