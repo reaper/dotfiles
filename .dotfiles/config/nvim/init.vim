@@ -34,7 +34,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-rake'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 
@@ -91,5 +91,5 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
+" VimIndent
+set ts=2 sw=2 et
