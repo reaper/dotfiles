@@ -6,10 +6,6 @@
 	path = .dotfiles/tools
 	url = https://github.com/reaper/tools.git
 	branch = master
-[submodule ".dotfiles/bin/neovim-gnome-terminal-wrapper"]
-	path = .dotfiles/bin/neovim-gnome-terminal-wrapper
-	url = https://github.com/fmoralesc/neovim-gnome-terminal-wrapper.git
-	branch = master
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git

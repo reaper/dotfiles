@@ -22,4 +22,8 @@ function r-reload-zsh() {
 }
 alias reload-zsh=r-reload-zsh
 
-alias gvim=~/.dotfiles/bin/neovim-gnome-terminal-wrapper/nvim-wrapper
+
+function r-gvim() {
+  /usr/bin/terminator --config=/home/reaper/.dotfiles/config/terminator/neovim -p reaper -x "nvim $(realpath $1)"
+}
+alias gvim=r-gvim

@@ -41,7 +41,7 @@ alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"
 alias qtcreator="qtcreator -stylesheet $HOME/.dotfiles/themes/qt/wombat-theme/stylesheet.css"
 
 #TERMINATOR
-alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/config -l reaper -p reaper"
+alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/base -l reaper -p reaper"
 
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
