@@ -1,5 +1,4 @@
 [global_config]
-  always_split_with_profile = True
   dbus = True
   enabled_plugins = ,
   focus = system
@@ -25,6 +24,38 @@
     [[[window0]]]
       parent = ""
       type = Window
+  [[reaper]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 0:89
+      size = 1280, 1024
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 640
+      type = HPaned
+    [[[child3]]]
+      order = 1
+      parent = child1
+      position = 512
+      type = VPaned
+    [[[terminal2]]]
+      order = 0
+      parent = child1
+      profile = default
+      type = Terminal
+    [[[terminal4]]]
+      order = 0
+      parent = child3
+      profile = default
+      type = Terminal
+    [[[terminal5]]]
+      order = 1
+      parent = child3
+      profile = default
+      type = Terminal
 [plugins]
 [profiles]
   [[default]]
