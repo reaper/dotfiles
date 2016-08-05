@@ -43,6 +43,10 @@ alias qtcreator="qtcreator -stylesheet $HOME/.dotfiles/themes/qt/wombat-theme/st
 #TERMINATOR
 alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/base -l reaper -p reaper"
 
+# PIDCAT
+export PATH=$HOME/.dotfiles/plugins/pidcat:$PATH
+alias logcat=pidcat.py
+
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
