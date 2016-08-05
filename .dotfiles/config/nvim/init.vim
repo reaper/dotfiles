@@ -61,7 +61,7 @@ nnoremap <C-S-Right> :wincmd l<CR>
 
 " Nerdtree
 " ========
-map <silent> <C-n> :NERDTreeToggle<CR>
+map <silent> <C-n> :NERDTreeToggle %<CR>
 
 
 " Javacomplete2
