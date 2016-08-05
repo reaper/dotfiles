@@ -9,7 +9,6 @@
   title_inactive_fg_color = "#ffffff"
   title_receive_bg_color = "#000000"
   title_transmit_bg_color = "#000000"
-  window_state = maximise
 [keybindings]
   hide_window = F12
   resize_down = <Primary><Shift>KP_Down
