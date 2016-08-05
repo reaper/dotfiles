@@ -10,3 +10,7 @@
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
+[submodule ".dotfiles/plugins/pidcat"]
+	path = .dotfiles/plugins/pidcat
+	url = https://github.com/JakeWharton/pidcat
+	branch = master
