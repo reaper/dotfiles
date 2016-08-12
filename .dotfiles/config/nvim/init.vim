@@ -37,6 +37,7 @@ Plug 'tpope/vim-rake'
 Plug 'Yggdroot/indentLine'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
+Plug 'equalsraf/neovim-gui-shim'
 
 
 " Colorscheme

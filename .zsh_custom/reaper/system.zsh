@@ -24,6 +24,6 @@ alias reload-zsh=r-reload-zsh
 
 
 function r-gvim() {
-  /usr/bin/terminator --config=/home/reaper/.dotfiles/config/terminator/neovim -p reaper -x "nvim $(realpath $1)"
+  gnome-terminal --name=Neovim --maximize -e "nvim $(realpath $1)"
 }
 alias gvim=r-gvim
