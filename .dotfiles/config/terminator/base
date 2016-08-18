@@ -3,9 +3,11 @@
   always_split_with_profile = True
   borderless = True
   dbus = True
+  enabled_plugins = LaunchpadCodeURLHandler, Logger, LaunchpadBugURLHandler
   focus = system
   handle_size = 1
   hide_from_taskbar = True
+  inactive_color_offset = 1.0
   sticky = True
   title_hide_sizetext = True
   title_inactive_bg_color = "#000000"
