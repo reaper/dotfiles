@@ -21,9 +21,3 @@ function r-reload-zsh() {
   source ~/.zshrc
 }
 alias reload-zsh=r-reload-zsh
-
-
-function r-gvim() {
-  gnome-terminal --name=Neovim --maximize -e "nvim $(realpath $1)"
-}
-alias gvim=r-gvim

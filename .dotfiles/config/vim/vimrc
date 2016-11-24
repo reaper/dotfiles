@@ -94,3 +94,6 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " VimIndent
 set ts=2 sw=2 et
+
+" VimSession
+let g:session_autosave = "yes"
