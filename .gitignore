@@ -1,4 +1,4 @@
 .vim/bundle
-.dotfiles/config/nvim/autoload
-.dotfiles/config/nvim/plugged
-.dotfiles/config/nvim/.*
+.dotfiles/config/vim/vim/autoload
+.dotfiles/config/vim/vim/plugged
+.dotfiles/config/vim/.*

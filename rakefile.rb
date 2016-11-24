@@ -14,7 +14,7 @@ task :prepare_dotfiles do
   sh "git submodule update --init --remote"
 
   # Install vim-plug
-  dotfiles_plug_path = File.join(File.dirname(__FILE__), ".dotfiles", "config", "nvim", "autoload", "plug.vim")
+  dotfiles_plug_path = File.join(File.dirname(__FILE__), ".dotfiles", "config", "vim", "vim", "autoload", "plug.vim")
   sh "curl -fLo #{dotfiles_plug_path} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" unless File.exists?(dotfiles_plug_path)
 end
 
@@ -44,13 +44,20 @@ task :make_symlinks do
 
   puts "\nCreate applications symbolik links"
 
-  # NVIM
-  config_nvim_path = File.join home_path, ".config", "nvim"
-  dotfiles_nvim_path = File.join dotfiles_home_path, "config", "nvim"
+  # VIM
+  vim_home_path = File.join home_path, ".vim"
+  dotfiles_vim_path = File.join dotfiles_home_path, "config", "vim", "vim"
 
-  rm_r config_nvim_path, verbose: true if file_exists_or_symlink(config_nvim_path)
-  ln_s dotfiles_nvim_path, config_nvim_path, verbose: true
+  rm_r vim_home_path, verbose: true if file_exists_or_symlink(vim_home_path)
+  ln_s dotfiles_vim_path, vim_home_path, verbose: true
 
+  vimrc_path = File.join home_path, ".vimrc"
+  dotfiles_vimrc_path = File.join dotfiles_home_path, "config", "vim", "vimrc"
+
+  rm_r vimrc_path, verbose: true if file_exists_or_symlink(vimrc_path)
+  ln_s dotfiles_vimrc_path, vimrc_path, verbose: true
+
+  # QTProject styles
   styles_path = File.join home_path, ".config", "QtProject", "qtcreator", "styles"
   mkdir_p styles_path, verbose: true unless File.exists?(styles_path)
 

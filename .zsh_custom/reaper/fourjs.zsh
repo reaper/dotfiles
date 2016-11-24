@@ -19,7 +19,7 @@ alias fglform='fglform -M'
 alias fglcomp='fglcomp -M'
 
 #COMMON
-alias route-to-local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eth0'
+alias route-to-local='sudo route add -net 10.10.0.0/24 gw 10.0.0.254 dev eno1'
 
 # Post boot screen applications
 function post-boot() {
