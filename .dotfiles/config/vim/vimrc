@@ -47,6 +47,7 @@ Plug 'tomasr/molokai'
 call plug#end()
 
 let mapleader = ","
+set guifont=Monospace\ 11
 
 syntax on
 filetype plugin indent on
