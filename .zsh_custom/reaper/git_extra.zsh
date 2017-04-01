@@ -17,7 +17,7 @@ function is_git_svn_clone() {
 # Pull with svn rebase if git repository type is svn
 # or pull with git
 function up() { 
-  if [ $(is_git_svn_clone) -eq 1 ]; then git svn rebase; else git pull; fi
+  if [ $(is_git_svn_clone) -eq 1 ]; then git svn rebase; else git pull --rebase; fi
 }
 
 # Push with svn dcommit if git repository type is svn
