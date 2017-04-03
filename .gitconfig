@@ -13,7 +13,7 @@
 	new = !git lg $1@{1}..$1@{0} "$@"
 	serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
 	web = instaweb -d webrick
-	up = svn rebase
+	up-svn = svn rebase
 	push-svn = svn dcommit
 	cherry-pick-svn = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
 	branch-svn = svn branch
@@ -38,10 +38,16 @@
 
 [log]
 	decorate = full
+
 [push]
 	default = matching
+
 [webui]
 	autoupdate = true
+
 [dude]
 	icon = ~/.git-dude/git_logo.png
 	interval = 30
+
+[pull]
+	rebase = true
