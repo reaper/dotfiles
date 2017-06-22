@@ -34,7 +34,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-rake'
-Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'equalsraf/neovim-gui-shim'
@@ -47,6 +47,7 @@ Plug 'tomasr/molokai'
 " Add plugins to &runtimepath
 call plug#end()
 
+set nowrap
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -58,6 +59,11 @@ set guifont=Monospace\ 11
 
 syntax on
 filetype plugin indent on
+
+set undofile
+set undodir=~/.vim-undo
+set undolevels=1000
+set undoreload=10000
 
 "load molokai if exists
 silent! colorscheme molokai
@@ -105,3 +111,7 @@ set ts=2 sw=2 et
 
 " VimSession
 let g:session_autosave = "yes"
+
+" IndentGuides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
