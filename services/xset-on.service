@@ -1,0 +1,10 @@
+[Unit]
+Description=Xset led on
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/bin/env xset led on
+
+[Install]
+WantedBy=default.target
