@@ -1,0 +1,10 @@
+[Unit]
+Description=Terminator
+
+[Service]
+Restart=always
+RestartSec=3
+ExecStart=/usr/bin/env terminator --config=/home/reaper/.dotfiles/config/terminator/base -l reaper -p reaper
+
+[Install]
+WantedBy=default.target
