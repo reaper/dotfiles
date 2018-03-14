@@ -14,8 +14,8 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-rails'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
@@ -49,6 +49,10 @@ call plug#end()
 
 set nowrap
 set nocompatible      " We're running Vim, not Vi!
+set nobackup
+set noswapfile
+set lazyredraw
+set nu
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -77,6 +81,7 @@ nnoremap <C-S-Right> :wincmd l<CR>
 " Nerdtree
 " ========
 map <silent> <C-n> :NERDTreeToggle %<CR>
+map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
 
 " Javacomplete2
