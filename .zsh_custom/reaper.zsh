@@ -11,7 +11,7 @@ export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
 export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
 export ANDROID_NDK_HOME=$ANDROID/ndk/current #ANDROID HOME
-export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 
 # Add latest buildtools to the path
 if [ -d "$ANDROID_HOME/build-tools" ]; then
