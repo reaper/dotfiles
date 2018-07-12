@@ -47,12 +47,14 @@ Plug 'tomasr/molokai'
 " Add plugins to &runtimepath
 call plug#end()
 
+set cursorline
+set nu
+set number relativenumber
 set nowrap
 set nocompatible      " We're running Vim, not Vi!
 set nobackup
 set noswapfile
 set lazyredraw
-set nu
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
