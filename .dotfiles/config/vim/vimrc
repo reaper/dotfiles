@@ -39,6 +39,7 @@ Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'equalsraf/neovim-gui-shim'
 Plug 'ervandew/supertab'
+Plug 'leafgarland/typescript-vim'
 
 
 " Colorscheme
