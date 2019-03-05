@@ -10,7 +10,7 @@ export JAVA_HOME=$JDK_HOME #JAVAHOME
 export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
 export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
-export ANDROID_NDK_HOME=$ANDROID/ndk/current #ANDROID HOME
+export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle #ANDROID HOME
 export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 
 # Add latest buildtools to the path
