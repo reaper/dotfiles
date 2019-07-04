@@ -14,8 +14,8 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-rails'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
@@ -41,9 +41,8 @@ Plug 'equalsraf/neovim-gui-shim'
 Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
 
-
 " Colorscheme
-Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -71,9 +70,10 @@ set undofile
 set undodir=~/.vim-undo
 set undolevels=1000
 set undoreload=10000
+set background=dark
 
-"load molokai if exists
-silent! colorscheme molokai
+"Use colorscheme gruvbox
+colorscheme gruvbox
 
 nnoremap <C-S-Up> :wincmd k<CR>
 nnoremap <C-S-Down> :wincmd j<CR>
