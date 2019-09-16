@@ -108,6 +108,9 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeHijackNetrw=0
 
+" ARB syntax highlight
+" ====================
+autocmd BufRead,BufNewFile *.arb setfiletype ruby
 
 " Javacomplete2
 " =============
