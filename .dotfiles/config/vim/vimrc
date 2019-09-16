@@ -40,6 +40,20 @@ Plug 'xolox/vim-misc'
 Plug 'equalsraf/neovim-gui-shim'
 Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
+Plug 'Shadowsith/vim-ruby-autocomplete'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'junegunn/fzf', { 'dir': '~/.vim/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'dense-analysis/ale'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -83,8 +97,16 @@ nnoremap <C-S-Right> :wincmd l<CR>
 
 " Nerdtree
 " ========
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd VimEnter * wincmd p
 map <silent> <C-n> :NERDTreeToggle %<CR>
 map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
+
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeHijackNetrw=0
 
 
 " Javacomplete2
@@ -123,3 +145,17 @@ let g:session_autosave = "yes"
 " IndentGuides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Deoplete
+" pip3 install --user pynvim
+let g:deoplete#enable_at_startup = 1
