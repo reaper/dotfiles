@@ -56,17 +56,6 @@ task :make_symlinks do
 
   rm_r vimrc_path, verbose: true if file_exists_or_symlink(vimrc_path)
   ln_s dotfiles_vimrc_path, vimrc_path, verbose: true
-
-  # QTProject styles
-  styles_path = File.join home_path, ".config", "QtProject", "qtcreator", "styles"
-  mkdir_p styles_path, verbose: true unless File.exists?(styles_path)
-
-  # QTCreator wombat colorscheme
-  tools_wombat_colorscheme_path = File.join dotfiles_home_path, "themes", "qt", "wombat-theme", "wombat-style.xml"
-  wombat_colorscheme_path = File.join styles_path, "wombat-style.xml"
-
-  rm_r wombat_colorscheme_path, verbose: true if file_exists_or_symlink(wombat_colorscheme_path)
-  ln_s tools_wombat_colorscheme_path, wombat_colorscheme_path, verbose: true
 end
 
 task :default => :init

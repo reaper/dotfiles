@@ -1,7 +1,3 @@
-[submodule ".dotfiles/themes/qt/wombat-theme"]
-	path = .dotfiles/themes/qt/wombat-theme
-	url = https://github.com/reaper/qt-creator-wombat-theme.git
-	branch = master
 [submodule ".dotfiles/tools"]
 	path = .dotfiles/tools
 	url = https://github.com/reaper/tools.git
