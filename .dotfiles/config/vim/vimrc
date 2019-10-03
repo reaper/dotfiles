@@ -61,13 +61,14 @@ set nocompatible      " We're running Vim, not Vi!
 set nobackup
 set noswapfile
 set lazyredraw
+set mouse=a
+
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 let mapleader = ","
-set guifont=Monospace\ 11
 
 syntax on
 filetype plugin indent on
@@ -77,6 +78,7 @@ set undodir=~/.vim-undo
 set undolevels=1000
 set undoreload=10000
 set background=dark
+set guifont=DejaVu\ Sans\ Mono:h9
 
 "Use colorscheme gruvbox
 colorscheme gruvbox
@@ -150,3 +152,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" GitGutter
+let g:gitgutter_enabled = 1

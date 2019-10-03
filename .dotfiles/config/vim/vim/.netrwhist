@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/reaper/.vim'
-let g:netrw_dirhist_2='/home/reaper/.vim/autoload'
-let g:netrw_dirhist_3='/home/reaper/Projects/dotfiles'
-let g:netrw_dirhist_4='/home/reaper/Fourjs/Projects/git/gcs-tools/products'
