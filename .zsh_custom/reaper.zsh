@@ -33,6 +33,7 @@ export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 #COMMON
 alias open="xdg-open"
 alias mkdir="mkdir -v"
+alias vi="vim"
 alias vim="nvim"
 alias gvim="nvim-qt"
 

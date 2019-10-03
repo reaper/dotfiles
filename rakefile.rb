@@ -48,6 +48,7 @@ task :make_symlinks do
   dotfiles_nvim_init_path = File.join dotfiles_home_path, "config", "nvim", "init.vim"
 
   rm_r nvim_init_path , verbose: true if file_exists_or_symlink(nvim_init_path)
+  mkdir_p File.dirname(nvim_init_path) unless File.directory?(nvim_init_path)
   ln_s dotfiles_nvim_init_path, nvim_init_path, verbose: true
 end
 
