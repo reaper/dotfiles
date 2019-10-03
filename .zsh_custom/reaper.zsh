@@ -33,6 +33,8 @@ export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 #COMMON
 alias open="xdg-open"
 alias mkdir="mkdir -v"
+alias vim="nvim"
+alias gvim="nvim-qt"
 
 #ANDROID
 alias studio="screen -mdS AndroidStudio bash -c '$ANDROID_STUDIO/bin/studio.sh'"

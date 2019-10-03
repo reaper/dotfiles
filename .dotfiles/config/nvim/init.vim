@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
 
 " Plugins
 Plug 'szw/vim-maximizer'
@@ -42,7 +42,7 @@ Plug 'ervandew/supertab'
 Plug 'leafgarland/typescript-vim'
 Plug 'Shadowsith/vim-ruby-autocomplete'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'junegunn/fzf', { 'dir': '~/.vim/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
@@ -73,12 +73,17 @@ let mapleader = ","
 syntax on
 filetype plugin indent on
 
+" Vim undo create dir if not existing
+if !isdirectory("~/.nvim/undo")
+  silent !mkdir ~/.nvim/undo > /dev/null 2>&1
+endif
+
 set undofile
-set undodir=~/.vim-undo
+set undodir=~/.nvim/undo
 set undolevels=1000
 set undoreload=10000
 set background=dark
-set guifont=DejaVu\ Sans\ Mono:h9
+set guifont=DejaVu\ Sans\ Mono:h7.5
 
 "Use colorscheme gruvbox
 colorscheme gruvbox
