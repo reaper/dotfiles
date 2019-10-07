@@ -46,6 +46,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -160,3 +161,6 @@ let g:syntastic_check_on_wq = 0
 
 " GitGutter
 let g:gitgutter_enabled = 1
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
