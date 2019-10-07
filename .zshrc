@@ -8,7 +8,7 @@ DEFAULT_USER="reaper"
 plugins=(rails brew bundler gem python rails rake rvm screen svn bower colorize copyfile copydir git git-extras gitignore ubuntu common-aliases gradle web-search wd)
 
 # Paths
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH #COMMON
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH #COMMON
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export TERM="xterm-256color"
 
