@@ -84,7 +84,7 @@ set undodir=~/.nvim/undo
 set undolevels=1000
 set undoreload=10000
 set background=dark
-set guifont=DejaVu\ Sans\ Mono:h7.5
+set guifont=DejaVu\ Sans\ Mono:h11
 
 "Use colorscheme gruvbox
 colorscheme gruvbox
