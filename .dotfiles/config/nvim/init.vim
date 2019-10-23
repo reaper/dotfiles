@@ -63,6 +63,17 @@ set nobackup
 set noswapfile
 set lazyredraw
 set mouse=a
+set clipboard+=unnamedplus
+
+" Paste with middle mouse click
+vmap <LeftRelease> "*ygv
+
+" Paste with <Shift> + <Insert>
+imap <S-Insert> <C-R>*
+
+if has("gui_running")
+  call GuiClipboard()
+endif
 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
