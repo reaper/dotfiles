@@ -97,6 +97,9 @@ set undoreload=10000
 set background=dark
 set guifont=DejaVu\ Sans\ Mono:h11
 
+set autoread
+au FocusGained,BufEnter * :checktime
+
 "Use colorscheme gruvbox
 colorscheme gruvbox
 
