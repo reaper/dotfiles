@@ -54,6 +54,10 @@ Plug 'morhetz/gruvbox'
 " Add plugins to &runtimepath
 call plug#end()
 
+"Use colorscheme gruvbox
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = "hard"
+
 set cursorline
 set nu
 set number relativenumber
@@ -100,9 +104,6 @@ set guifont=DejaVu\ Sans\ Mono:h11
 set autoread
 au FocusGained,BufEnter * :checktime
 
-"Use colorscheme gruvbox
-colorscheme gruvbox
-
 nnoremap <C-S-Up> :wincmd k<CR>
 nnoremap <C-S-Down> :wincmd j<CR>
 nnoremap <C-S-Left> :wincmd h<CR>
@@ -120,7 +121,7 @@ map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:NERDTreeHijackNetrw=0
+let g:NERDTreeHijackNetrw = 0
 
 " ARB syntax highlight
 " ====================
