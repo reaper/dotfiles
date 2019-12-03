@@ -23,7 +23,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-markdown'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'groenewege/vim-less'
 Plug 'othree/html5.vim'
@@ -179,3 +179,8 @@ let g:gitgutter_enabled = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Markdown
+let g:vim_markdown_folding_disabled = 1
+
+
