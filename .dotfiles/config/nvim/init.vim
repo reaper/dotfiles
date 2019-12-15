@@ -99,7 +99,12 @@ set undodir=~/.nvim/undo
 set undolevels=1000
 set undoreload=10000
 set background=dark
-set guifont=DejaVu\ Sans\ Mono:h11
+
+if has('macunix')
+  set guifont=Monaco:h10
+else
+  set guifont=DejaVu\ Sans\ Mono:h11
+endif
 
 set autoread
 au FocusGained,BufEnter * :checktime
