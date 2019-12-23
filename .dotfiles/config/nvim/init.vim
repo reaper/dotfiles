@@ -47,6 +47,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'mileszs/ack.vim'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -101,7 +102,7 @@ set undoreload=10000
 set background=dark
 
 if has('macunix')
-  set guifont=Monaco:h10
+  set guifont=Hack:h10
 else
   set guifont=DejaVu\ Sans\ Mono:h11
 endif
@@ -188,4 +189,8 @@ let g:deoplete#enable_at_startup = 1
 " Markdown
 let g:vim_markdown_folding_disabled = 1
 
-
+" Session
+let g:session_lock_enabled = 0
+let g:session_autosave = 'yes'
+let g:session_autosave_periodic = 1
+let g:session_autosave_silent = 1
