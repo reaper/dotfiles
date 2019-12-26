@@ -16,12 +16,10 @@ Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'artur-shaik/vim-javacomplete2'
-Plug 'tacahiroy/ctrlp-funky'
 Plug 'vim-ruby/vim-ruby'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -48,6 +46,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -194,3 +194,6 @@ let g:session_lock_enabled = 0
 let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 1
 let g:session_autosave_silent = 1
+
+" FZF
+execute "nnoremap <C-p> :Files " . getcwd() . "<Cr>"
