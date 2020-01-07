@@ -1,11 +1,18 @@
 # ZSH configuration file
 # Created by Pierre FILSTROFF
 #
+# Get os name
+
 #COMMON
 export TOOLS_HOME=/usr/local/tools
 
 # JAVA / ANDROID
-export JDK_HOME=/usr/lib/jvm/default-java #JDKHOME
+if [[ $OSTYPE =~ "^darwin" ]]; then
+  export JDK_HOME="$(/usr/libexec/java_home)" #JDKHOME
+else
+  export JDK_HOME=/usr/lib/jvm/default-java #JDKHOME
+fi
+
 export JAVA_HOME=$JDK_HOME #JAVAHOME
 export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
@@ -31,12 +38,15 @@ export PATH=$TOOLS_HOME/64bits/genymotion:$PATH
 
 #ALIASES
 #COMMON
-alias open="xdg-open"
+if ! [[ $OSTYPE =~ "^darwin" ]]; then
+  alias open="xdg-open"
+fi
+
 alias mkdir="mkdir -v"
 alias vi="vim"
 alias vim="nvim"
 
-if [ $na = "Darwin" ]; then
+if [ $os_name = "Darwin" ]; then
   alias gvim="vimr"
 else
   alias gvim="nvim-qt"
@@ -59,4 +69,5 @@ alias logcat=pidcat.py
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
 source $ZSH_CUSTOM/reaper/fourjs.zsh
+source $ZSH_CUSTOM/reaper/octoly.zsh
 source $ZSH_CUSTOM/reaper/android.zsh
