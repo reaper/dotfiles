@@ -43,11 +43,15 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -61,7 +65,7 @@ let g:gruvbox_contrast_dark = "hard"
 
 set cursorline
 set nu
-set number relativenumber
+"set number relativenumber difficult for pair programing
 set nowrap
 set nocompatible      " We're running Vim, not Vi!
 set nobackup
@@ -122,7 +126,7 @@ autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimEnter * wincmd p
 map <silent> <C-n> :NERDTreeToggle %<CR>
-map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
+map <silent> <C-S-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1

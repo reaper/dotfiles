@@ -46,7 +46,7 @@ alias mkdir="mkdir -v"
 alias vi="vim"
 alias vim="nvim"
 
-if [ $os_name = "Darwin" ]; then
+if [[ $OSTYPE =~ "^darwin" ]]; then
   alias gvim="vimr"
 else
   alias gvim="nvim-qt"
