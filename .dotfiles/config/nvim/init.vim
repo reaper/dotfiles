@@ -51,6 +51,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ntpeters/vim-better-whitespace'
 
 
 " Colorscheme
@@ -126,7 +127,7 @@ autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimEnter * wincmd p
 map <silent> <C-n> :NERDTreeToggle %<CR>
-map <silent> <C-S-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
+"map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
@@ -201,3 +202,8 @@ let g:session_autosave_silent = 1
 
 " FZF
 execute "nnoremap <C-p> :Files " . getcwd() . "<Cr>"
+
+" Better Whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
