@@ -48,7 +48,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'yuezk/vim-js'
+"Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ntpeters/vim-better-whitespace'
@@ -126,7 +126,8 @@ nnoremap <C-S-Right> :wincmd l<CR>
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimEnter * wincmd p
-map <silent> <C-n> :NERDTreeToggle %<CR>
+au FocusGained * :NERDTreeFocus
+"map <silent> <C-n> :NERDTreeToggle %<CR>
 "map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
 let NERDTreeAutoDeleteBuffer = 1
@@ -168,8 +169,6 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " VimIndent
 set ts=2 sw=2 et
 
-" VimSession
-let g:session_autosave = "yes"
 
 " IndentGuides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -194,11 +193,10 @@ let g:deoplete#enable_at_startup = 1
 " Markdown
 let g:vim_markdown_folding_disabled = 1
 
-" Session
+" VimSession
 let g:session_lock_enabled = 0
-let g:session_autosave = 'yes'
-let g:session_autosave_periodic = 1
-let g:session_autosave_silent = 1
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
 
 " FZF
 execute "nnoremap <C-p> :Files " . getcwd() . "<Cr>"

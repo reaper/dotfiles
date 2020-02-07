@@ -20,7 +20,7 @@
 	merge-svn = merge --squash
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
  
 [color]
 	branch = auto
@@ -31,7 +31,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = /usr/bin/vim
+	editor = nvim
 
 [diff]
 	tool = opendiff
