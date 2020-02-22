@@ -44,7 +44,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 "Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'tag': '5.1', 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -52,7 +52,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ntpeters/vim-better-whitespace'
-
+Plug 'joker1007/vim-ruby-heredoc-syntax'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -71,9 +71,10 @@ set nowrap
 set nocompatible      " We're running Vim, not Vi!
 set nobackup
 set noswapfile
-set lazyredraw
 set mouse=a
 set clipboard+=unnamedplus
+set nocursorline
+set regexpengine=1 " ruby regexp engine version to 1 more perf
 
 " Paste with middle mouse click
 vmap <LeftRelease> "*ygv
@@ -113,7 +114,7 @@ else
 endif
 
 set autoread
-au FocusGained,BufEnter * :checktime
+au FocusGained,BufEnter,CursorHold * :checktime
 
 nnoremap <C-S-Up> :wincmd k<CR>
 nnoremap <C-S-Down> :wincmd j<CR>
@@ -126,7 +127,7 @@ nnoremap <C-S-Right> :wincmd l<CR>
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimEnter * wincmd p
-au FocusGained * :NERDTreeFocus
+au FocusGained * :NERDTreeRefreshRoot
 "map <silent> <C-n> :NERDTreeToggle %<CR>
 "map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
@@ -134,6 +135,9 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeHijackNetrw = 0
+
+" Tagbar
+autocmd VimEnter * TagbarToggle
 
 " ARB syntax highlight
 " ====================
@@ -205,3 +209,8 @@ execute "nnoremap <C-p> :Files " . getcwd() . "<Cr>"
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+
+nnoremap <C-W>M <C-W>\| <C-W>_
+nnoremap <C-W>m <C-W>=
+
+
