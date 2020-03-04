@@ -196,12 +196,6 @@ nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
 
 
-" CtrlPFunky
-" ==========
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
 " VimIndent
 set ts=2 sw=2 et
 
@@ -237,11 +231,8 @@ let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 
-nnoremap <C-W>M <C-W>\| <C-W>_
-nnoremap <C-W>m <C-W>=
-
 " Toggle maximize
-map <silent> <C-m> :MaximizerToggle<CR>
+nnoremap <silent> <Leader>m :MaximizerToggle<CR>
 
 " Ruby
 let g:ruby_default_path=system("which ruby")
@@ -249,3 +240,8 @@ let g:ruby_default_path=system("which ruby")
 " Ale
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': ['eslint'],
+\  'ruby': ['rubocop'],
+\}
