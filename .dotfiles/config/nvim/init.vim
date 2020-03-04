@@ -17,7 +17,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'vim-ruby/vim-ruby'
@@ -42,7 +42,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'tag': '5.1', 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -206,14 +206,14 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 set ts=2 sw=2 et
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " GitGutter
 let g:gitgutter_enabled = 1
@@ -245,3 +245,7 @@ map <silent> <C-m> :MaximizerToggle<CR>
 
 " Ruby
 let g:ruby_default_path=system("which ruby")
+
+" Ale
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
