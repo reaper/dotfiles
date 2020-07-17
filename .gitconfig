@@ -21,7 +21,7 @@
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
 	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
- 
+
 [color]
 	branch = auto
 	diff = auto
@@ -40,7 +40,7 @@
 	decorate = full
 
 [push]
-	default = matching
+	default = current
 
 [webui]
 	autoupdate = true
@@ -50,7 +50,9 @@
 	interval = 30
 
 [pull]
+	default = current
 	rebase = true
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
