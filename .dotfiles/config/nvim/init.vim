@@ -56,7 +56,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'rhysd/git-messenger.vim'
 Plug 'junegunn/gv.vim'
-Plug 'astashov/vim-ruby-debugger'
+Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
