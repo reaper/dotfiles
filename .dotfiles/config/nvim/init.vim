@@ -43,7 +43,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'tag': '5.1', 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -54,6 +54,9 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'rhysd/git-messenger.vim'
+Plug 'junegunn/gv.vim'
+Plug 'astashov/vim-ruby-debugger'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -114,11 +117,12 @@ set smartcase                   " ... but not when search pattern contains upper
 set autoindent
 set tabstop=4 shiftwidth=4 expandtab
 set gdefault            " Use 'g' flag by default with :s/foo/bar/.
-set magic               " Use 'magic' patterns (extended regular expressions).
+set redrawtime=10000
+set wrap
+set linebreak
 
 " Paste with middle mouse click
 vmap <LeftRelease> "*ygv
-
 " Paste with <Shift> + <Insert>
 imap <S-Insert> <C-R>*
 
@@ -126,6 +130,8 @@ if has("gui_running")
   call GuiClipboard()
 endif
 
+autocmd BufEnter * :syntax sync fromstart
+autocmd BufWinEnter,Syntax * syn sync minlines=500 maxlines=500
 
 let mapleader = ","
 
@@ -159,7 +165,6 @@ nnoremap <C-S-Right> :wincmd l<CR>
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimEnter * wincmd p
-au FocusGained * :NERDTreeRefreshRoot
 map <silent> <C-n> :NERDTreeToggle %<CR>
 "map <silent> <C-r> :NERDTreeFocus<cr> \| R \| <c-w><c-p>
 
