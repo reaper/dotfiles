@@ -57,7 +57,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'rhysd/git-messenger.vim'
 Plug 'junegunn/gv.vim'
 Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
-Plug 'lilydjwg/colorizer'
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' } " require golang
+
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
