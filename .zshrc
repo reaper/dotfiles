@@ -25,3 +25,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval $(thefuck --alias)
+
+# added by travis gem
+[ ! -s /Users/reaper/.travis/travis.sh ] || source /Users/reaper/.travis/travis.sh

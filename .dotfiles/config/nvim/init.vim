@@ -54,10 +54,9 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'rhysd/git-messenger.vim'
-Plug 'junegunn/gv.vim'
 Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' } " require golang
+Plug 'APZelos/blamer.nvim'
 
 
 " Colorscheme
@@ -252,3 +251,8 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'ruby': ['rubocop'],
 \}
+
+" Git Blamer
+let g:blamer_enabled = 1
+let g:blamer_delay = 0
+highlight Blamer guifg=cyan
