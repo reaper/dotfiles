@@ -57,7 +57,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' } " require golang
 Plug 'APZelos/blamer.nvim'
-
+Plug 'elixir-editors/vim-elixir'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -255,4 +255,5 @@ let g:ale_fixers = {
 " Git Blamer
 let g:blamer_enabled = 1
 let g:blamer_delay = 0
+let g:blamer_show_in_visual_modes = 0
 highlight Blamer guifg=cyan
