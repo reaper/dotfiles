@@ -28,3 +28,4 @@ eval $(thefuck --alias)
 
 # added by travis gem
 [ ! -s /Users/reaper/.travis/travis.sh ] || source /Users/reaper/.travis/travis.sh
+export PATH="/usr/local/sbin:$PATH"
