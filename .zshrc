@@ -5,15 +5,38 @@ COMPLETION_WAITING_DOTS="true"
 DEFAULT_USER="reaper"
 
 # zsh plugins
-plugins=(rails brew bundler gem python rails rake rvm screen svn bower colorize copyfile copydir git git-extras gitignore ubuntu common-aliases gradle web-search wd)
+plugins=(
+  rails
+  brew
+  bundler
+  gem
+  python
+  rake
+  rvm
+  screen
+  svn
+  bower
+  colorize
+  copyfile
+  copydir
+  git
+  git-extras
+  gitignore
+  ubuntu
+  common-aliases
+  gradle
+  web-search
+  wd
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
+)
 
 # Paths
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH #COMMON
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export TERM="xterm-256color"
 
 # RVM configuration
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -29,3 +52,6 @@ eval $(thefuck --alias)
 # added by travis gem
 [ ! -s /Users/reaper/.travis/travis.sh ] || source /Users/reaper/.travis/travis.sh
 export PATH="/usr/local/sbin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
