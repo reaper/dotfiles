@@ -30,6 +30,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   zsh-completions
+  k
 )
 
 # Paths
