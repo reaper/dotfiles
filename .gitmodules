@@ -10,9 +10,6 @@
 	path = .dotfiles/plugins/pidcat
 	url = https://github.com/JakeWharton/pidcat
 	branch = master
-[submodule ".zsh_custom/plugins/zsh-autosuggestions"]
-	path = .zsh_custom/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule ".zsh_custom/plugins/zsh-completions"]
 	path = .zsh_custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions

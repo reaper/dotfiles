@@ -28,7 +28,6 @@ plugins=(
   web-search
   wd
   zsh-syntax-highlighting
-  zsh-autosuggestions
   zsh-completions
   k
 )
