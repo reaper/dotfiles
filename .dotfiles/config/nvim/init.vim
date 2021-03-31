@@ -46,7 +46,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'Yggdroot/indentLine'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' } " require golang
 Plug 'APZelos/blamer.nvim'
@@ -163,6 +163,9 @@ hi Visual guifg=White guibg=Blue gui=none
 hi Visual term=reverse cterm=reverse guibg=Blue
 
 
+" Visual Multi
+let g:VM_theme = 'iceblue'
+
 " Nerdtree
 " ========
 autocmd vimenter * NERDTree
@@ -174,7 +177,12 @@ map <silent> <C-n> :NERDTreeToggle %<CR>
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:NERDTreeHijackNetrw = 0
+let NERDTreeHijackNetrw = 0
+let NERDCompactSexyComs = 1
+let NERDDefaultAlign = 'left'
+let NERDCommentEmptyLines = 0
+let NERDTrimTrailingWhitespace = 1
+let NERDSpaceDelims = 1
 
 " ARB syntax highlight
 " ====================
