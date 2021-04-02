@@ -2,6 +2,11 @@
 #
 # Created by Pierre FILSTROFF
 
+# Cleanup git branches that hasn't been merged in master
+function cleanup_git_branches() {
+  git branch -d $(git branch --merged=master | grep -v master)
+}
+
 # Fix slow git completion
 function __git_files () { 
   _wanted files expl 'local files' _files
@@ -25,3 +30,5 @@ function up() {
 function push() { 
   if [ $(is_git_svn_clone) -eq 1 ]; then git svn dcommit; else git push; fi
 }
+
+alias cgb=cleanup_git_branches
