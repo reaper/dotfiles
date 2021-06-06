@@ -1,60 +1,71 @@
 [user]
-	name = Pierre FILSTROFF
-	email = pierre.filstroff@gmail.com
+  name = Pierre FILSTROFF
+  email = pierre.filstroff@gmail.com
 
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	cl = clean -fdx
-	df = diff
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	new = !git lg $1@{1}..$1@{0} "$@"
-	serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
-	web = instaweb -d webrick
-	up-svn = svn rebase
-	push-svn = svn dcommit
-	cherry-pick-svn = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
-	branch-svn = svn branch
-	merge-svn = merge --squash
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  cl = clean -fdx
+  df = diff
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  new = !git lg $1@{1}..$1@{0} "$@"
+  serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+  web = instaweb -d webrick
+  up-svn = svn rebase
+  push-svn = svn dcommit
+  cherry-pick-svn = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick -e
+  branch-svn = svn branch
+  merge-svn = merge --squash
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
 
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
-	ui = true
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = true
 
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = nvim
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+  pager = delta
 
 [diff]
-	tool = opendiff
+  tool = opendiff
 
 [log]
-	decorate = full
+  decorate = full
 
 [push]
-	default = current
+  default = current
 
 [webui]
-	autoupdate = true
+  autoupdate = true
 
 [dude]
-	icon = ~/.git-dude/git_logo.png
-	interval = 30
+  icon = ~/.git-dude/git_logo.png
+  interval = 30
 
 [pull]
-	default = current
-	rebase = true
+  default = current
+  rebase = true
 
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = Monokai Extended
+  navigate = true
+  line-numbers = true
+
+[interactive]
+  diffFilter = delta --color-only

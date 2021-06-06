@@ -3,14 +3,12 @@ call plug#begin('~/.nvim/plugged')
 " Plugins
 Plug 'szw/vim-maximizer'
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/vim-easy-align'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-rails'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
@@ -18,9 +16,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-ruby/vim-ruby'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'groenewege/vim-less'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
 Plug 'elzr/vim-json'
@@ -28,8 +23,6 @@ Plug 'tpope/vim-sensible'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'tpope/vim-bundler'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'tpope/vim-rake'
-Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'equalsraf/neovim-gui-shim'
 Plug 'leafgarland/typescript-vim'
@@ -38,8 +31,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.nvim/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -47,11 +39,19 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' } " require golang
 Plug 'APZelos/blamer.nvim'
-Plug 'elixir-editors/vim-elixir'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Plug 'kchmck/vim-coffee-script'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'groenewege/vim-less'
+" Plug 'tpope/vim-rake'
+" Plug 'xolox/vim-session'
+" Plug 'junegunn/vim-easy-align'
+" Plug 'apple/swift', {'rtp': 'utils/vim','name': 'Swift-Syntax'}
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'godlygeek/tabular'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
@@ -235,6 +235,7 @@ let g:session_autoload = 'no'
 
 " FZF
 execute "nnoremap <C-p> :Files " . getcwd() . "<Cr>"
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " Better Whitespace
 let g:better_whitespace_enabled=1
