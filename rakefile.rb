@@ -44,8 +44,8 @@ task :make_symlinks do
 
   puts "\nCreate applications symbolik links"
 
-  nvim_init_path = File.join home_path, ".config", "nvim", "init.vim"
-  dotfiles_nvim_init_path = File.join dotfiles_home_path, "config", "nvim", "init.vim"
+  nvim_init_path = File.join home_path, ".config", "nvim", "init.lua"
+  dotfiles_nvim_init_path = File.join dotfiles_home_path, "config", "nvim", "init.lua"
 
   rm_r nvim_init_path , verbose: true if file_exists_or_symlink(nvim_init_path)
   mkdir_p File.dirname(nvim_init_path) unless File.directory?(nvim_init_path)

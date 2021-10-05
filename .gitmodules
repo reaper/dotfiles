@@ -19,3 +19,6 @@
 [submodule ".zsh_custom/plugins/k"]
 	path = .zsh_custom/plugins/k
 	url = https://github.com/supercrabtree/k
+[submodule ".zsh_custom/themes/powerlevel10k"]
+	path = .zsh_custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git

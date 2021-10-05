@@ -65,6 +65,8 @@ alias terminator="terminator --config=$HOME/.dotfiles/config/terminator/base -l 
 export PATH=$HOME/.dotfiles/plugins/pidcat:$PATH
 alias logcat=pidcat.py
 
+alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
+
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
