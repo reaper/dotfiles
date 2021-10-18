@@ -1,0 +1,9 @@
+{
+  "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.completion": true,
+  "solargraph.hover": true,
+  "codeLens.enable": true,
+  "diagnostic.checkCurrentLine": true
+}
