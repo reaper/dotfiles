@@ -32,7 +32,6 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = nvim
-  pager = delta
 
 [diff]
   tool = opendiff
@@ -59,13 +58,3 @@
   process = git-lfs filter-process
   required = true
   clean = git-lfs clean -- %f
-
-[delta]
-  plus-style = "syntax #012800"
-  minus-style = "syntax #340001"
-  syntax-theme = Monokai Extended
-  navigate = true
-  line-numbers = true
-
-[interactive]
-  diffFilter = delta --color-only
