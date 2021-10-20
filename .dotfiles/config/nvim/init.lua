@@ -27,7 +27,6 @@ require("packer").startup(function()
   use("nvim-lua/completion-nvim")
   use({ "neoclide/coc.nvim", branch = "release" })
   use("rafcamlet/coc-nvim-lua")
-  -- use("kabouzeid/nvim-lspinstall")
 
   -- use("jiangmiao/auto-pairs") -- Pair completion
   use({ "nvim-lua/popup.nvim", requires = { "nvim-lua/plenary.nvim" } })
@@ -44,7 +43,6 @@ require("packer").startup(function()
   })
 
   use("mhartington/formatter.nvim")
-  use("neovim/nvim-lspconfig")
   use("nvim-telescope/telescope.nvim")
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
@@ -65,6 +63,14 @@ require("packer").startup(function()
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("nvim-tree").setup({})
+    end,
+  })
+
+  -- mkdir
+  use({
+    "jghauser/mkdir.nvim",
+    config = function()
+      require("mkdir")
     end,
   })
 end)
@@ -165,24 +171,6 @@ map("n", "<C-t>", ":NvimTreeToggle<CR>", { silent = true })
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
 map("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
 
--- -- LspInstaller
--- local function setup_servers()
---   require("lspinstall").setup()
---   local servers = require("lspinstall").installed_servers()
---   for _, server in pairs(servers) do
---     require("lspconfig")[server].setup({})
---   end
--- end
---
--- setup_servers()
---
--- -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
--- require("lspinstall").post_install_hook = function()
---   setup_servers() -- reload installed servers
---   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
--- end
-
--- Comment
 require("nvim_comment").setup({})
 
 -- lspkind Icon setup
@@ -198,24 +186,13 @@ require("gitsigns").setup({
 -- Session
 require("auto-session").setup({
   log_level = "info",
-  auto_session_enable_last_session = false,
+  auto_session_enable_last_session = true,
   auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
   auto_session_enabled = true,
   auto_save_enabled = true,
   auto_restore_enabled = true,
   auto_session_suppress_dirs = nil,
 })
-
--- LSP this is needed for LSP completions in CSS along with the snippets plugin
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
-  },
-}
 
 -- COC extensions
 vim.g.coc_global_extensions = {
@@ -243,32 +220,6 @@ vim.g.coc_global_extensions = {
   "coc-tailwindcss",
   "coc-swagger",
 }
-
--- LSP Server config
-require("lspconfig").cssls.setup({
-  cmd = { "vscode-css-language-server", "--stdio" },
-  capabilities = capabilities,
-  settings = {
-    scss = {
-      lint = {
-        idSelector = "warning",
-        zeroUnits = "warning",
-        duplicateProperties = "warning",
-      },
-      completion = {
-        completePropertyWithSemicolon = true,
-        triggerPropertyValueCompletion = true,
-      },
-    },
-  },
-})
-require("lspconfig").tsserver.setup({})
-
--- LSP Prevents inline buffer annotations
-vim.lsp.diagnostic.show_line_diagnostics()
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false,
-})
 
 -- LSP Saga config & keys https://github.com/glepnir/lspsaga.nvim
 local saga = require("lspsaga")
@@ -362,7 +313,7 @@ augroup END
   false
 )
 
--- location icon: 
+--- location icon: 
 require("lualine").setup({
   options = {
     icons_enabled = true,
