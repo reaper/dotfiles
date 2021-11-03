@@ -16,6 +16,7 @@ require("packer").startup(function()
   use("terrortylor/nvim-comment") -- Comment code
   use("ggandor/lightspeed.nvim") -- Maximize speed while minimizing mental effort and breaks in the flow
   use("glepnir/lspsaga.nvim") -- Highly a performant UI
+  use("cappyzawa/trim.nvim")
 
   -- Statusline
   use({
@@ -95,6 +96,18 @@ vim.api.nvim_set_keymap("v", "H", "<Plug>Lightspeed_S", {})
 
 -- Auto yank text on select
 vim.api.nvim_set_keymap("v", "<LeftRelease>", '"*ygv', {})
+
+-- Trim trailing space
+require("trim").setup({
+  disable = { "markdown" },
+
+  -- if you want to ignore space of top
+  patterns = {
+    [[%s/\s\+$//e]],
+    [[%s/\($\n\s*\)\+\%$//]],
+    [[%s/\(\n\n\)\n\+/\1/]],
+  },
+})
 
 -- Indent blankline
 vim.opt.list = true
