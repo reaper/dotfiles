@@ -58,20 +58,14 @@ require("packer").startup(function()
   use("mg979/vim-visual-multi") -- multi cursor
   use("tomasiser/vim-code-dark") -- colorscheme
   use("sindrets/diffview.nvim")
+  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+  use("Pocco81/AutoSave.nvim")
 
   use({
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("nvim-tree").setup({})
-    end,
-  })
-
-  -- mkdir
-  use({
-    "jghauser/mkdir.nvim",
-    config = function()
-      require("mkdir")
     end,
   })
 end)
@@ -114,6 +108,25 @@ vim.opt.list = true
 require("indent_blankline").setup({
   space_char_blankline = " ",
   show_current_context = true,
+})
+
+-- Autosave
+local autosave = require("autosave")
+
+autosave.setup({
+  enabled = true,
+  execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
+  events = { "InsertLeave", "TextChanged" },
+  conditions = {
+    exists = true,
+    filename_is_not = {},
+    filetype_is_not = {},
+    modifiable = true,
+  },
+  write_all_buffers = false,
+  on_off_commands = true,
+  clean_command_line_interval = 0,
+  debounce_delay = 135,
 })
 
 -- Nvim tree
