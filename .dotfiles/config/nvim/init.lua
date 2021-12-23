@@ -67,6 +67,14 @@ require("packer").startup(function()
       require("nvim-tree").setup({})
     end,
   })
+
+  use({
+    "startup-nvim/startup.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("startup").setup({ theme = "startify" })
+    end,
+  })
 end)
 
 -- map function to set nvim keymap
@@ -134,7 +142,7 @@ require("nvim-tree").setup({
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor = false,
   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_cwd = false,
+  update_cwd = true,
   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
   update_focused_file = {
     -- enables the feature
@@ -335,7 +343,7 @@ require("lualine").setup({
       { "diff", color_added = "#a7c080", color_modified = "#ffdf1b", color_removed = "#ff6666" },
     },
     lualine_c = {
-      { "diagnostics", sources = { "nvim_lsp" } },
+      { "diagnostics", sources = { "nvim_diagnostic" } },
       function()
         return "%="
       end,
