@@ -48,7 +48,6 @@ require("packer").startup(function()
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
   use("onsails/lspkind-nvim") -- vscode like pictograms
-  use("rmagatti/auto-session")
 
   use("tpope/vim-repeat")
   use("wellle/targets.vim")
@@ -59,6 +58,7 @@ require("packer").startup(function()
   use("tomasiser/vim-code-dark") -- colorscheme
   use("sindrets/diffview.nvim")
   use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+  use("Shatur/neovim-session-manager")
 
   use({
     "kyazdani42/nvim-tree.lua",
@@ -71,9 +71,6 @@ require("packer").startup(function()
   use({
     "startup-nvim/startup.nvim",
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    config = function()
-      require("startup").setup({ theme = "startify" })
-    end,
   })
 end)
 
@@ -115,7 +112,23 @@ vim.opt.list = true
 require("indent_blankline").setup({
   space_char_blankline = " ",
   show_current_context = true,
+  show_current_context_start = true
 })
+
+-- Session
+local Path = require("plenary.path")
+require("session_manager").setup({
+  sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
+  path_replacer = "__", -- The character to which the path separator will be replaced for session files.
+  colon_replacer = "++", -- The character to which the colon symbol will be replaced for session files.
+  autoload_mode = require("session_manager.config").AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+  autosave_last_session = true, -- Automatically save last session on exit.
+  autosave_ignore_not_normal = true, -- Plugin will not save a session when no writable and listed buffers are opened.
+  autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+})
+
+-- Startup
+require("startup").setup({ theme = "dashboard" })
 
 -- Nvim tree
 -- following options are the default
@@ -181,7 +194,7 @@ require("nvim-tree").setup({
   },
 })
 
-map("n", "<C-t>", ":NvimTreeToggle<CR>", { silent = true })
+map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
 map("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
 
@@ -195,17 +208,6 @@ require("gitsigns").setup({
   numhl = true,
   signcolumn = true,
   current_line_blame = true,
-})
-
--- Session
-require("auto-session").setup({
-  log_level = "info",
-  auto_session_enable_last_session = true,
-  auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
-  auto_session_enabled = true,
-  auto_save_enabled = true,
-  auto_restore_enabled = true,
-  auto_session_suppress_dirs = nil,
 })
 
 -- COC extensions
@@ -451,6 +453,7 @@ map("i", ",/", "</<C-X><C-O>")
 
 -- Telescope Global remapping
 local actions = require("telescope.actions")
+require("telescope").load_extension("sessions")
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
@@ -533,12 +536,7 @@ map(
   "<leader>f",
   '<cmd>lua require("telescope.builtin").file_browser(require("telescope.themes").get_dropdown({}))<cr>'
 )
-map("n", "<leader>s", '<cmd>lua require("telescope.builtin").spell_suggest()<cr>')
-map(
-  "n",
-  "<leader>i",
-  '<cmd>lua require("telescope.builtin").git_status(require("telescope.themes").get_dropdown({}))<cr>'
-)
+map("n", "<leader>s", ":Telescope sessions<CR>")
 
 -- Change window shortcuts
 map("n", "<C-S-Up>", ":wincmd k<CR>")
