@@ -453,7 +453,6 @@ map("i", ",/", "</<C-X><C-O>")
 
 -- Telescope Global remapping
 local actions = require("telescope.actions")
-require("telescope").load_extension("sessions")
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
