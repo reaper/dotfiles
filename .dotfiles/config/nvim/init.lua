@@ -58,7 +58,25 @@ require("packer").startup(function()
   use("tomasiser/vim-code-dark") -- colorscheme
   use("sindrets/diffview.nvim")
   use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
-  use("Shatur/neovim-session-manager")
+
+  use({
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        log_level = "info",
+        auto_session_suppress_dirs = { "~/", "~/Projects" },
+      })
+    end,
+  })
+
+  use({
+    "rmagatti/session-lens",
+    requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("session-lens").setup({--[[your custom config--]]
+      })
+    end,
+  })
 
   use({
     "kyazdani42/nvim-tree.lua",
@@ -95,6 +113,11 @@ vim.api.nvim_set_keymap("v", "H", "<Plug>Lightspeed_S", {})
 -- Auto yank text on select
 vim.api.nvim_set_keymap("v", "<LeftRelease>", '"*ygv', {})
 
+require('auto-session').setup {
+  pre_save_cmds = { "tabdo NvimTreeClose"},
+  post_restore_cmds = { "tabdo NvimTreeOpen" }
+}
+
 -- Trim trailing space
 require("trim").setup({
   disable = { "markdown" },
@@ -112,19 +135,7 @@ vim.opt.list = true
 require("indent_blankline").setup({
   space_char_blankline = " ",
   show_current_context = true,
-  show_current_context_start = true
-})
-
--- Session
-local Path = require("plenary.path")
-require("session_manager").setup({
-  sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
-  path_replacer = "__", -- The character to which the path separator will be replaced for session files.
-  colon_replacer = "++", -- The character to which the colon symbol will be replaced for session files.
-  autoload_mode = require("session_manager.config").AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
-  autosave_last_session = true, -- Automatically save last session on exit.
-  autosave_ignore_not_normal = true, -- Plugin will not save a session when no writable and listed buffers are opened.
-  autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+  show_current_context_start = true,
 })
 
 -- Startup
@@ -453,6 +464,7 @@ map("i", ",/", "</<C-X><C-O>")
 
 -- Telescope Global remapping
 local actions = require("telescope.actions")
+require("telescope").load_extension("session-lens")
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
@@ -535,7 +547,7 @@ map(
   "<leader>f",
   '<cmd>lua require("telescope.builtin").file_browser(require("telescope.themes").get_dropdown({}))<cr>'
 )
-map("n", "<leader>s", ":Telescope sessions<CR>")
+map("n", "<leader>s", ":Telescope session-lens search_session<CR>")
 
 -- Change window shortcuts
 map("n", "<C-S-Up>", ":wincmd k<CR>")
