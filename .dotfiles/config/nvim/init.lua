@@ -13,7 +13,7 @@ end
 -- Plugins
 require("packer").startup(function()
   use("wbthomason/packer.nvim") -- Packer can manage itself
-  use("terrortylor/nvim-comment") -- Comment code
+  use("numToStr/Comment.nvim")
   use("ggandor/lightspeed.nvim") -- Maximize speed while minimizing mental effort and breaks in the flow
   use("glepnir/lspsaga.nvim") -- Highly a performant UI
   use("cappyzawa/trim.nvim")
@@ -38,9 +38,6 @@ require("packer").startup(function()
     requires = {
       "nvim-lua/plenary.nvim",
     },
-    config = function()
-      require("gitsigns").setup()
-    end,
   })
 
   use("mhartington/formatter.nvim")
@@ -58,16 +55,7 @@ require("packer").startup(function()
   use("tomasiser/vim-code-dark") -- colorscheme
   use("sindrets/diffview.nvim")
   use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
-
-  use({
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "info",
-        auto_session_suppress_dirs = { "~/", "~/Projects" },
-      })
-    end,
-  })
+  use("rmagatti/auto-session")
 
   use({
     "rmagatti/session-lens",
@@ -81,9 +69,6 @@ require("packer").startup(function()
   use({
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("nvim-tree").setup({})
-    end,
   })
 
   use({
@@ -113,10 +98,10 @@ vim.api.nvim_set_keymap("v", "H", "<Plug>Lightspeed_S", {})
 -- Auto yank text on select
 vim.api.nvim_set_keymap("v", "<LeftRelease>", '"*ygv', {})
 
-require('auto-session').setup {
-  pre_save_cmds = { "tabdo NvimTreeClose"},
-  post_restore_cmds = { "tabdo NvimTreeOpen" }
-}
+require("auto-session").setup({
+  pre_save_cmds = { "tabdo NvimTreeClose" },
+  post_restore_cmds = { "tabdo NvimTreeOpen" },
+})
 
 -- Trim trailing space
 require("trim").setup({
@@ -209,7 +194,14 @@ map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
 map("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
 
-require("nvim_comment").setup({})
+-- Comment
+require("Comment").setup()
+
+-- Auto session
+require("auto-session").setup({
+  log_level = "info",
+  auto_session_suppress_dirs = { "~/", "~/Projects" },
+})
 
 -- lspkind Icon setup
 require("lspkind").init({})
