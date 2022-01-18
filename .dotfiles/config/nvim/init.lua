@@ -98,11 +98,6 @@ vim.api.nvim_set_keymap("v", "H", "<Plug>Lightspeed_S", {})
 -- Auto yank text on select
 vim.api.nvim_set_keymap("v", "<LeftRelease>", '"*ygv', {})
 
-require("auto-session").setup({
-  pre_save_cmds = { "tabdo NvimTreeClose" },
-  post_restore_cmds = { "tabdo NvimTreeOpen" },
-})
-
 -- Trim trailing space
 require("trim").setup({
   disable = { "markdown" },
@@ -200,7 +195,12 @@ require("Comment").setup()
 -- Auto session
 require("auto-session").setup({
   log_level = "info",
-  auto_session_suppress_dirs = { "~/", "~/Projects" },
+  auto_session_enable_last_session = true,
+  auto_session_enabled = true,
+  auto_save_enabled = true,
+  auto_restore_enabled = true,
+  pre_save_cmds = { "tabdo NvimTreeClose" },
+  post_restore_cmds = { "tabdo NvimTreeOpen" },
 })
 
 -- lspkind Icon setup
