@@ -39,11 +39,12 @@ plugins=(
   k
 )
 
-# Paths
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH #COMMON
-export TERM="xterm-256color"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# RVM configuration
+# PATH
+export PATH=/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH #COMMON
+export TERM="xterm-256color"
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -64,5 +65,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Add cargo to PATH
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# LIBPQ
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
