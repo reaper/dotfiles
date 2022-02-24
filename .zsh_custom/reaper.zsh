@@ -26,7 +26,6 @@ if [ -d "$ANDROID_HOME/build-tools" ]; then
   export PATH=$ANDROID_HOME/build-tools/$BUILD_TOOLS_LATEST_VERSION:$PATH
 fi
 
-
 # QT
 export QTCREATOR_HOME=$TOOLS_HOME/64bits/qtcreator/current
 export QTDIR=$TOOLS_HOME/64bits/qt/current
@@ -69,9 +68,10 @@ if [[ ! $OSTYPE =~ "^darwin" ]]; then
   alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
 fi
 
+alias gcm="git commit -S -m"
+
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
 source $ZSH_CUSTOM/reaper/fourjs.zsh
-source $ZSH_CUSTOM/reaper/octoly.zsh
 source $ZSH_CUSTOM/reaper/android.zsh

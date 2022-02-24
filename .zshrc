@@ -19,7 +19,6 @@ plugins=(
   gem
   python
   rake
-  rvm
   screen
   svn
   bower
@@ -59,11 +58,11 @@ export NVM_DIR="$HOME/.nvm"
 [ ! -s /Users/reaper/.travis/travis.sh ] || source /Users/reaper/.travis/travis.sh
 export PATH="/usr/local/sbin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # Add cargo to PATH
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # LIBPQ
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

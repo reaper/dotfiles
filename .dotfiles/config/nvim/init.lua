@@ -89,6 +89,9 @@ end
 -- Map leader to space
 g.mapleader = ","
 
+-- Gui font
+vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
+
 -- Lightspeed remap
 vim.api.nvim_set_keymap("n", "h", "<Plug>Lightspeed_s", {})
 vim.api.nvim_set_keymap("n", "H", "<Plug>Lightspeed_S", {})
@@ -559,6 +562,7 @@ end
 require("formatter").setup({
   logging = false,
   filetype = {
+    typescript = { prettier },
     javascript = { prettier },
     typescript = { prettier },
     html = { prettier },
@@ -589,12 +593,12 @@ require("formatter").setup({
 })
 
 -- Runs Formatter on save
-vim.api.nvim_exec(
-  [[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.rb,*.js,*.ts,*.css,*.scss,*.md,*.html,*.lua : FormatWrite
-augroup END
-]],
-  true
-)
+-- vim.api.nvim_exec(
+--   [[
+-- augroup FormatAutogroup
+--   autocmd!
+--   autocmd BufWritePost *.rb,*.js,*.ts,*.css,*.scss,*.md,*.html,*.lua : FormatWrite
+-- augroup END
+-- ]],
+--   true
+-- )
