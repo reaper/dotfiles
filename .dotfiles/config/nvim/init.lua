@@ -27,7 +27,6 @@ require("packer").startup(function()
   -- Completion
   use("nvim-lua/completion-nvim")
   use({ "neoclide/coc.nvim", branch = "release" })
-  use("rafcamlet/coc-nvim-lua")
 
   -- use("jiangmiao/auto-pairs") -- Pair completion
   use({ "nvim-lua/popup.nvim", requires = { "nvim-lua/plenary.nvim" } })
@@ -42,6 +41,7 @@ require("packer").startup(function()
 
   use("mhartington/formatter.nvim")
   use("nvim-telescope/telescope.nvim")
+  use("nvim-telescope/telescope-file-browser.nvim")
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
   use("onsails/lspkind-nvim") -- vscode like pictograms
@@ -191,6 +191,9 @@ require("nvim-tree").setup({
 map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
 map("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
+
+-- COC
+map("n", "<leader>h", ":call CocActionAsync('doHover')<CR>")
 
 -- Comment
 require("Comment").setup()
@@ -459,6 +462,7 @@ map("i", ",/", "</<C-X><C-O>")
 
 -- Telescope Global remapping
 local actions = require("telescope.actions")
+require("telescope").load_extension("file_browser")
 require("telescope").load_extension("session-lens")
 require("telescope").setup({
   defaults = {
@@ -509,6 +513,11 @@ require("telescope").setup({
       },
     },
   },
+  extensions = {
+    file_browser = {
+      theme = "get_dropdown",
+    }
+  },
   pickers = {
     buffers = {
       sort_lastused = true,
@@ -537,12 +546,8 @@ map(
 )
 map("n", "<leader>b", '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({}))<cr>')
 map("n", "<leader>j", '<cmd>lua require("telescope.builtin").help_tags()<cr>')
-map(
-  "n",
-  "<leader>f",
-  '<cmd>lua require("telescope.builtin").file_browser(require("telescope.themes").get_dropdown({}))<cr>'
-)
 map("n", "<leader>s", ":Telescope session-lens search_session<CR>")
+map("n", "<leader>f", ":Telescope file_browser<CR>")
 
 -- Change window shortcuts
 map("n", "<C-S-Up>", ":wincmd k<CR>")

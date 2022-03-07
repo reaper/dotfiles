@@ -24,7 +24,7 @@ plugins=(
   bower
   colorize
   copyfile
-  copydir
+  copypath
   git
   git-extras
   gitignore
