@@ -42,7 +42,8 @@ plugins=(
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # PATH
-export PATH=/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH #COMMON
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH # COMMON
+export PATH=/opt/homebrew/bin:$PATH # HOMEBREW
 export TERM="xterm-256color"
 
 # Load oh-my-zsh
@@ -60,9 +61,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Add cargo to PATH
 export PATH="$PATH:$HOME/.cargo/bin"
-
-# LIBPQ
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
