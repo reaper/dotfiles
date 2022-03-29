@@ -61,6 +61,3 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Add cargo to PATH
 export PATH="$PATH:$HOME/.cargo/bin"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"

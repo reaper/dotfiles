@@ -1,7 +1,7 @@
 [user]
   name = Pierre FILSTROFF
   email = pierre.filstroff@gmail.com
-  signingkey = E50F38305C43F4C03B51B3E1BA1FA255779897FB
+  signingkey = C1EC29ED119CDB75E21182E7E5FBF7E099F2A0CF
 
 [commit]
   gpgsign = true

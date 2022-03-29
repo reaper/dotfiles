@@ -92,6 +92,9 @@ g.mapleader = ","
 -- Gui font
 vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
 
+-- Load the colorscheme
+cmd([[colorscheme codedark]]) -- Put your favorite colorscheme here
+
 -- Lightspeed remap
 vim.api.nvim_set_keymap("n", "h", "<Plug>Lightspeed_s", {})
 vim.api.nvim_set_keymap("n", "H", "<Plug>Lightspeed_S", {})
@@ -277,9 +280,6 @@ map("n", "<leader>cd", ":Lspsaga preview_definition<CR>", { silent = true })
 local ts = require("nvim-treesitter.configs")
 ts.setup({ ensure_installed = "maintained", highlight = { enable = true } })
 
--- Load the colorscheme
-cmd([[colorscheme codedark]]) -- Put your favorite colorscheme here
-
 opt.backspace = { "indent", "eol", "start" }
 opt.clipboard:append({ "unnamedplus" })
 opt.completeopt = "menuone,noselect"
@@ -289,7 +289,6 @@ opt.expandtab = true -- Use spaces instead of tabs
 opt.foldenable = false
 opt.foldmethod = "indent"
 opt.formatoptions = "l"
-opt.hidden = true
 opt.hidden = true -- Enable background buffers
 opt.hlsearch = true -- Highlight found searches
 opt.ignorecase = true -- Ignore case
@@ -320,7 +319,7 @@ opt.sw = 2
 opt.history = 100
 opt.undolevels = 1000
 opt.undofile = true
-opt.undodir = "~/.nvim/undo"
+-- opt.undodir = "~/.nvim/undo" -- WARNING: it's create fucking \~ folders
 opt.autoread = true
 
 vim.g.netrw_liststyle = 3 -- Tree style Netrw
@@ -598,12 +597,12 @@ require("formatter").setup({
 })
 
 -- Runs Formatter on save
--- vim.api.nvim_exec(
---   [[
--- augroup FormatAutogroup
---   autocmd!
---   autocmd BufWritePost *.rb,*.js,*.ts,*.css,*.scss,*.md,*.html,*.lua : FormatWrite
--- augroup END
--- ]],
---   true
--- )
+vim.api.nvim_exec(
+  [[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.rb,*.js,*.ts,*.css,*.scss,*.md,*.html,*.lua : FormatWrite
+augroup END
+]],
+  true
+)
