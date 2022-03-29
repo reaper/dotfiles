@@ -47,8 +47,10 @@ alias vim="nvim"
 
 if [[ $OSTYPE =~ "^darwin" ]]; then
   alias gvim="vimr"
+  alias osupgrade="softwareupdate -i -a && brew update && brew upgrade && brew upgrade --cask"
 else
   alias gvim="nvim-qt"
+  alias osupgrade="sudo apt update && sudo apt full-upgrade"
 fi
 
 #ANDROID
@@ -68,7 +70,7 @@ if [[ ! $OSTYPE =~ "^darwin" ]]; then
   alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
 fi
 
-alias gcm="git commit -S -m"
+export GPG_TTY=$(tty)
 
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
