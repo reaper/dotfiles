@@ -1,7 +1,7 @@
 [user]
   name = Pierre FILSTROFF
   email = pierre.filstroff@gmail.com
-  signingkey = C1EC29ED119CDB75E21182E7E5FBF7E099F2A0CF
+  signingkey = 41B5A344
 
 [commit]
   gpgsign = true
@@ -63,5 +63,5 @@
   required = true
   clean = git-lfs clean -- %f
 
-[includeIf "gitdir:~/Projects/Lifen/"]
-  path = ~/.gitconfig.lifen
+[gpg]
+  program = /opt/homebrew/bin/gpg

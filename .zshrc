@@ -61,3 +61,8 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Add cargo to PATH
 export PATH="$PATH:$HOME/.cargo/bin"
+eval "$(pyenv init -)"
+
+export GPG_TTY=$(tty)
+export PATH=$(pyenv root)/shims:$PATH
+export EDITOR=$(which nvim)

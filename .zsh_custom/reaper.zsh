@@ -16,7 +16,13 @@ fi
 export JAVA_HOME=$JDK_HOME #JAVAHOME
 export ANDROID=$TOOLS_HOME/64bits/android #ANDROID
 export ANDROID_STUDIO=$ANDROID/studio #ANDROID STUDIO
-export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
+
+if [[ $OSTYPE =~ "^darwin" ]]; then
+  export ANDROID_HOME=~/Library/Android/sdk
+else
+  export ANDROID_HOME=$ANDROID/sdk #ANDROID HOME
+fi
+
 export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle #ANDROID HOME
 export PATH=${ANDROID_NDK_HOME}:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 
@@ -47,7 +53,7 @@ alias vim="nvim"
 
 if [[ $OSTYPE =~ "^darwin" ]]; then
   alias gvim="vimr"
-  alias osupgrade="softwareupdate -i -a && brew update && brew upgrade && brew upgrade --cask"
+  alias osupgrade="brew update && brew upgrade && brew upgrade --cask && softwareupdate -i -a"
 else
   alias gvim="nvim-qt"
   alias osupgrade="sudo apt update && sudo apt full-upgrade"

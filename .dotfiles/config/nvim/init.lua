@@ -278,7 +278,7 @@ map("n", "<leader>cd", ":Lspsaga preview_definition<CR>", { silent = true })
 
 -- Setup treesitter
 local ts = require("nvim-treesitter.configs")
-ts.setup({ ensure_installed = "maintained", highlight = { enable = true } })
+ts.setup({ ensure_installed = "all", highlight = { enable = true } })
 
 opt.backspace = { "indent", "eol", "start" }
 opt.clipboard:append({ "unnamedplus" })
