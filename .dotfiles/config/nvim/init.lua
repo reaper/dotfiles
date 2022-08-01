@@ -15,7 +15,6 @@ require("packer").startup(function()
   use("wbthomason/packer.nvim") -- Packer can manage itself
   use("numToStr/Comment.nvim")
   use("ggandor/lightspeed.nvim") -- Maximize speed while minimizing mental effort and breaks in the flow
-  use("glepnir/lspsaga.nvim") -- Highly a performant UI
   use("cappyzawa/trim.nvim")
 
   -- Statusline
@@ -190,20 +189,6 @@ vim.g.coc_global_extensions = {
   "coc-tailwindcss",
   "coc-swagger",
 }
-
--- LSP Saga config & keys https://github.com/glepnir/lspsaga.nvim
-local saga = require("lspsaga")
-saga.init_lsp_saga({
-  code_action_icon = " ",
-  definition_preview_icon = "  ",
-  -- dianostic_header_icon = "   ",
-  error_sign = " ",
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  hint_sign = "⚡",
-  infor_sign = "",
-  warn_sign = "",
-})
 
 map("n", "<Leader>cf", ":Lspsaga lsp_finder<CR>", { silent = true })
 map("n", "<leader>ca", ":Lspsaga code_action<CR>", { silent = true })
@@ -504,7 +489,7 @@ map("n", "<C-S-Right>", ":wincmd l<CR>")
 local prettier = function()
   return {
     exe = "prettier",
-    args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), "--single-quote" },
+    args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
     stdin = true,
   }
 end

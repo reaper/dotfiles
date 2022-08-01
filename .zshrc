@@ -43,7 +43,7 @@ plugins=(
 
 # PATH
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.local/bin:$PATH # COMMON
-export PATH=/opt/homebrew/bin:$PATH # HOMEBREW
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH # HOMEBREW
 export TERM="xterm-256color"
 
 # Load oh-my-zsh
