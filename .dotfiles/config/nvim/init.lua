@@ -139,6 +139,24 @@ map("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
 -- COC
 map("n", "<leader>h", ":call CocActionAsync('doHover')<CR>")
 
+-- COC confirm completion with TAB and CR
+vim.api.nvim_exec(
+  [[
+" use <tab> for trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+]],
+  true
+)
+
 -- Comment
 require("Comment").setup()
 
@@ -190,25 +208,12 @@ vim.g.coc_global_extensions = {
   "coc-swagger",
 }
 
-map("n", "<Leader>cf", ":Lspsaga lsp_finder<CR>", { silent = true })
-map("n", "<leader>ca", ":Lspsaga code_action<CR>", { silent = true })
-map("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", { silent = true })
-map("n", "<leader>ch", ":Lspsaga hover_doc<CR>", { silent = true })
-map("n", "<leader>ck", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', { silent = true })
-map("n", "<leader>cj", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', { silent = true })
-map("n", "<leader>cs", ":Lspsaga signature_help<CR>", { silent = true })
-map("n", "<leader>ci", ":Lspsaga show_line_diagnostics<CR>", { silent = true })
-map("n", "<leader>cn", ":Lspsaga diagnostic_jump_next<CR>", { silent = true })
-map("n", "<leader>cp", ":Lspsaga diagnostic_jump_prev<CR>", { silent = true })
-map("n", "<leader>cr", ":Lspsaga rename<CR>", { silent = true })
-map("n", "<leader>cd", ":Lspsaga preview_definition<CR>", { silent = true })
-
 -- Setup treesitter
 local ts = require("nvim-treesitter.configs")
 ts.setup({
   ensure_installed = "all",
   ignore_install = { "phpdoc" },
-  highlight = { enable = true }
+  highlight = { enable = true },
 })
 
 opt.backspace = { "indent", "eol", "start" }
@@ -446,7 +451,7 @@ require("telescope").setup({
   extensions = {
     file_browser = {
       theme = "get_dropdown",
-    }
+    },
   },
   pickers = {
     buffers = {
