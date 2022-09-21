@@ -53,7 +53,6 @@ require("packer").startup(function()
   use("mg979/vim-visual-multi") -- multi cursor
   use("tomasiser/vim-code-dark") -- colorscheme
   use("sindrets/diffview.nvim")
-  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
   use("rmagatti/auto-session")
 
   use({
