@@ -51,7 +51,6 @@ require("packer").startup(function()
   use("lukas-reineke/indent-blankline.nvim") -- indent lines
   use("yamatsum/nvim-cursorline") -- underline same words
   use("mg979/vim-visual-multi") -- multi cursor
-  use("tomasiser/vim-code-dark") -- colorscheme
   use("sindrets/diffview.nvim")
   use("rmagatti/auto-session")
 
@@ -73,6 +72,20 @@ require("packer").startup(function()
     "startup-nvim/startup.nvim",
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   })
+
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  })
+
+  -- colorscheme
+  -- use("tomasiser/vim-code-dark")
+  use("Mofiqul/vscode.nvim")
+  -- use("navarasu/onedark.nvim")
+  -- use("marko-cerovac/material.nvim")
+  -- use({ "ellisonleao/gruvbox.nvim" })
 end)
 
 -- map function to set nvim keymap
@@ -91,7 +104,18 @@ g.mapleader = ","
 vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
 
 -- Load the colorscheme
-cmd([[colorscheme codedark]]) -- Put your favorite colorscheme here
+vim.o.background = "dark" -- or "light" for light mode
+-- vim.cmd([[colorscheme codedark]])
+
+local c = require("vscode.colors")
+require("vscode").setup({
+  transparent = true,
+  italic_comments = true,
+  disable_nvimtree_bg = true,
+  group_overrides = {
+    Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+  },
+})
 
 -- Lightspeed remap
 vim.api.nvim_set_keymap("n", "h", "<Plug>Lightspeed_s", {})
@@ -276,7 +300,7 @@ augroup END
 require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = "codedark",
+    theme = "vscode",
     component_separators = { " ", " " },
     section_separators = { "", "" },
     disabled_filetypes = {},
