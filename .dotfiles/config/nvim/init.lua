@@ -31,12 +31,13 @@ require("packer").startup(function()
   use({ "nvim-lua/popup.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
   -- Git
-  use({
-    "lewis6991/gitsigns.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-  })
+  use("airblade/vim-gitgutter")
+  use("tpope/vim-fugitive")
+  use("tpope/vim-rhubarb")
+  use("f-person/git-blame.nvim")
+
+  -- Registers
+  use("gennaro-tedesco/nvim-peekup")
 
   use("mhartington/formatter.nvim")
   use("nvim-telescope/telescope.nvim")
@@ -79,11 +80,12 @@ require("packer").startup(function()
       vim.fn["mkdp#util#install"]()
     end,
   })
+  use({ "melopilosyan/rspec-integrated.nvim" })
 
   -- colorscheme
   -- use("tomasiser/vim-code-dark")
-  use("Mofiqul/vscode.nvim")
-  -- use("navarasu/onedark.nvim")
+  -- use("Mofiqul/vscode.nvim")
+  use("navarasu/onedark.nvim")
   -- use("marko-cerovac/material.nvim")
   -- use({ "ellisonleao/gruvbox.nvim" })
 end)
@@ -105,17 +107,22 @@ vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
 
 -- Load the colorscheme
 vim.o.background = "dark" -- or "light" for light mode
--- vim.cmd([[colorscheme codedark]])
+-- vim.cmd([[colorscheme onedark]])
 
-local c = require("vscode.colors")
-require("vscode").setup({
-  transparent = true,
-  italic_comments = true,
-  disable_nvimtree_bg = true,
-  group_overrides = {
-    Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
-  },
+require("onedark").setup({
+  style = "darker",
 })
+require("onedark").load()
+
+-- local c = require("vscode.colors")
+-- require("vscode").setup({
+--   transparent = true,
+--   italic_comments = true,
+--   disable_nvimtree_bg = true,
+--   group_overrides = {
+--     Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+--   },
+-- })
 
 -- Lightspeed remap
 vim.api.nvim_set_keymap("n", "h", "<Plug>Lightspeed_s", {})
@@ -183,6 +190,14 @@ inoremap <silent><expr> <Tab>
 -- Comment
 require("Comment").setup()
 
+-- RSPEC integrated
+vim.keymap.set(
+  "n",
+  "<leader>ti",
+  "<cmd>lua require('rspec.integrated').run_spec_file()<cr>",
+  { silent = true, noremap = true }
+)
+
 -- Auto session
 require("auto-session").setup({
   log_level = "info",
@@ -196,13 +211,6 @@ require("auto-session").setup({
 
 -- lspkind Icon setup
 require("lspkind").init({})
-
--- gitsigns setup
-require("gitsigns").setup({
-  numhl = true,
-  signcolumn = true,
-  current_line_blame = true,
-})
 
 -- COC extensions
 vim.g.coc_global_extensions = {
@@ -300,7 +308,7 @@ augroup END
 require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = "vscode",
+    theme = "onedark",
     component_separators = { " ", " " },
     section_separators = { "", "" },
     disabled_filetypes = {},
