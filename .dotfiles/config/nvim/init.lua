@@ -53,7 +53,17 @@ require("packer").startup(function()
   use("yamatsum/nvim-cursorline") -- underline same words
   use("mg979/vim-visual-multi") -- multi cursor
   use("sindrets/diffview.nvim")
-  use("rmagatti/auto-session")
+  use("github/copilot.vim")
+
+  use({
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      })
+    end,
+  })
 
   use({
     "rmagatti/session-lens",
@@ -81,6 +91,17 @@ require("packer").startup(function()
     end,
   })
   use({ "melopilosyan/rspec-integrated.nvim" })
+  -- use({
+  --   "Pocco81/auto-save.nvim",
+  --   config = function()
+  --     require("auto-save").setup({
+  --       trigger_events = { "InsertLeave" },
+  --     })
+  --   end,
+  -- })
+  --
+  use("nvim-tree/nvim-web-devicons")
+  use({ "romgrk/barbar.nvim", wants = "nvim-web-devicons" })
 
   -- colorscheme
   -- use("tomasiser/vim-code-dark")

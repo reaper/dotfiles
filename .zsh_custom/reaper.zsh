@@ -53,7 +53,7 @@ alias vim="nvim"
 
 if [[ $OSTYPE =~ "^darwin" ]]; then
   alias gvim="vimr"
-  alias osupgrade="brew update && brew upgrade && brew upgrade --cask --greedy && softwareupdate -i -a"
+  alias osupgrade="brew update && brew upgrade --greedy && brew upgrade --cask --greedy && softwareupdate -i -a"
 else
   alias gvim="nvim-qt"
   alias osupgrade="sudo apt update && sudo apt full-upgrade"
