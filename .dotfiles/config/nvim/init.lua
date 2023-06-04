@@ -56,6 +56,14 @@ require("packer").startup(function()
   use("github/copilot.vim")
 
   use({
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup({})
+    end,
+  })
+
+  use({
     "rmagatti/auto-session",
     config = function()
       require("auto-session").setup({
@@ -156,7 +164,7 @@ vim.api.nvim_set_keymap("v", "<LeftRelease>", '"*ygv', {})
 
 -- Trim trailing space
 require("trim").setup({
-  disable = { "markdown" },
+  ft_blocklist = { "markdown" },
 
   -- if you want to ignore space of top
   patterns = {
