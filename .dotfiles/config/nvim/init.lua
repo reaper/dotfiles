@@ -56,6 +56,18 @@ require("packer").startup(function()
   use("github/copilot.vim")
 
   use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  })
+
+  use({
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
@@ -136,6 +148,14 @@ vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
 
 -- Load the colorscheme
 vim.o.background = "dark" -- or "light" for light mode
+
+-- autoread
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
+
 -- vim.cmd([[colorscheme onedark]])
 
 require("onedark").setup({
@@ -184,6 +204,13 @@ require("indent_blankline").setup({
 
 -- Startup
 require("startup").setup({ theme = "dashboard" })
+
+-- ChatGPT
+require("chatgpt").setup()
+
+vim.keymap.set("n", "<Leader>tk", "<cmd>:ChatGPT<cr>")
+vim.keymap.set("n", "<Leader>tj", "<cmd>:ChatGPTActAs<cr>")
+vim.keymap.set("n", "<Leader>tt", "<cmd>:ChatGPTEditWithInstructions<cr>")
 
 -- Nvim tree
 -- following options are the default
