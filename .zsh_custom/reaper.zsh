@@ -1,7 +1,6 @@
 # ZSH configuration file
 # Created by Pierre FILSTROFF
 #
-# Get os name
 
 #COMMON
 export TOOLS_HOME=/usr/local/tools
@@ -84,3 +83,4 @@ source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
 source $ZSH_CUSTOM/reaper/fourjs.zsh
 source $ZSH_CUSTOM/reaper/android.zsh
+source $ZSH_CUSTOM/reaper/docker.zsh
