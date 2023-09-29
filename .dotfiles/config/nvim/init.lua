@@ -196,7 +196,7 @@ require("trim").setup({
 
 -- Indent blankline
 vim.opt.list = true
-require("indent_blankline").setup({
+require("ibl").setup({
   space_char_blankline = " ",
   show_current_context = true,
   show_current_context_start = true,
@@ -346,6 +346,9 @@ opt.undofile = true
 opt.autoread = true
 
 vim.g.netrw_liststyle = 3 -- Tree style Netrw
+
+-- Markdown preview autostart
+vim.g.mkdp_auto_start = 1
 
 -- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous, 'z=‘ for suggestions when on one.
 -- Source: http:--thejakeharding.com/tutorial/2012/06/13/using-spell-check-in-vim.html
@@ -629,3 +632,11 @@ augroup END
 ]],
   true
 )
+
+-- Restore cursor position
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.api.nvim_exec('silent! normal! g`"zv', false)
+  end,
+})

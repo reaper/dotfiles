@@ -77,6 +77,8 @@ if [[ ! $OSTYPE =~ "^darwin" ]]; then
 fi
 
 export GPG_TTY=$(tty)
+export CI=true
+export RAILS_SYSTEM_TESTING_SCREENSHOT=inline
 
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
