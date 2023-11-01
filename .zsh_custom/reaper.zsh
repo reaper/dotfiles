@@ -76,6 +76,10 @@ if [[ ! $OSTYPE =~ "^darwin" ]]; then
   alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
 fi
 
+if [[ $OSTYPE =~ "^darwin" ]]; then
+  alias gpg='/opt/homebrew/bin/gpg'
+fi
+
 export GPG_TTY=$(tty)
 export CI=true
 export RAILS_SYSTEM_TESTING_SCREENSHOT=inline
