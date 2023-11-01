@@ -65,4 +65,4 @@
   clean = git-lfs clean -- %f
 
 [gpg]
-  program = /opt/homebrew/bin/gpg
+  program = /usr/bin/gpg
