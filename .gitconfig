@@ -66,5 +66,3 @@
 
 [gpg]
   program = /opt/homebrew/bin/gpg
-[init]
-  templatedir = /Users/reaper/.git-templates

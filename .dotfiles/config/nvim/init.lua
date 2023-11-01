@@ -3,15 +3,21 @@ local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options
 
--- Install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-  vim.cmd("packadd packer.nvim")
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd([[packadd packer.nvim]])
+    return true
+  end
+  return false
 end
 
+local packer_bootstrap = ensure_packer()
+
 -- Plugins
-require("packer").startup(function()
+require("packer").startup(function(use)
   use("wbthomason/packer.nvim") -- Packer can manage itself
   use("numToStr/Comment.nvim")
   use("ggandor/lightspeed.nvim") -- Maximize speed while minimizing mental effort and breaks in the flow
@@ -54,18 +60,6 @@ require("packer").startup(function()
   use("mg979/vim-visual-multi") -- multi cursor
   use("sindrets/diffview.nvim")
   use("github/copilot.vim")
-
-  use({
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup()
-    end,
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  })
 
   use({
     "folke/todo-comments.nvim",
@@ -129,6 +123,12 @@ require("packer").startup(function()
   use("navarasu/onedark.nvim")
   -- use("marko-cerovac/material.nvim")
   -- use({ "ellisonleao/gruvbox.nvim" })
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 -- map function to set nvim keymap
@@ -196,21 +196,35 @@ require("trim").setup({
 
 -- Indent blankline
 vim.opt.list = true
-require("ibl").setup({
-  space_char_blankline = " ",
-  show_current_context = true,
-  show_current_context_start = true,
-})
+local highlight = {
+  "RainbowRed",
+  "RainbowYellow",
+  "RainbowBlue",
+  "RainbowOrange",
+  "RainbowGreen",
+  "RainbowViolet",
+  "RainbowCyan",
+}
+local hooks = require("ibl.hooks")
+-- create the highlight groups in the highlight setup hook, so they are reset
+-- every time the colorscheme changes
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+  vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+  vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+  vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+end)
+
+vim.g.rainbow_delimiters = { highlight = highlight }
+require("ibl").setup({ scope = { highlight = highlight } })
+
+hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
 -- Startup
 require("startup").setup({ theme = "dashboard" })
-
--- ChatGPT
-require("chatgpt").setup()
-
-vim.keymap.set("n", "<Leader>tk", "<cmd>:ChatGPT<cr>")
-vim.keymap.set("n", "<Leader>tj", "<cmd>:ChatGPTActAs<cr>")
-vim.keymap.set("n", "<Leader>tt", "<cmd>:ChatGPTEditWithInstructions<cr>")
 
 -- Nvim tree
 -- following options are the default
@@ -296,6 +310,7 @@ vim.g.coc_global_extensions = {
 }
 
 -- Setup treesitter
+require("nvim-treesitter.install").prefer_git = true
 local ts = require("nvim-treesitter.configs")
 ts.setup({
   ensure_installed = "all",
