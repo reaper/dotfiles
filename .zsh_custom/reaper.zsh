@@ -84,6 +84,8 @@ export GPG_TTY=$(tty)
 export CI=true
 export RAILS_SYSTEM_TESTING_SCREENSHOT=inline
 
+alias cat=bat
+
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
