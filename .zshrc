@@ -36,6 +36,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-completions
   k
+  tmux
 )
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

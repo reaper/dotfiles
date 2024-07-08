@@ -26,7 +26,7 @@ require("packer").startup(function(use)
   -- Statusline
   use({
     "hoob3rt/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
   })
 
   -- Completion
@@ -70,32 +70,8 @@ require("packer").startup(function(use)
   })
 
   use({
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-      })
-    end,
-  })
-
-  use({
-    "rmagatti/session-lens",
-    requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("session-lens").setup({--[[your custom config--]]
-      })
-    end,
-  })
-
-  use({
-    "kyazdani42/nvim-tree.lua",
-    requires = "kyazdani42/nvim-web-devicons",
-  })
-
-  use({
-    "startup-nvim/startup.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    "nvim-tree/nvim-tree.lua",
+    requires = "nvim-tree/nvim-web-devicons",
   })
 
   use({
@@ -127,7 +103,7 @@ require("packer").startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
-    require('packer').sync()
+    require("packer").sync()
   end
 end)
 
@@ -194,7 +170,6 @@ require("trim").setup({
   },
 })
 
--- Indent blankline
 vim.opt.list = true
 local highlight = {
   "RainbowRed",
@@ -223,14 +198,11 @@ require("ibl").setup({ scope = { highlight = highlight } })
 
 hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
--- Startup
-require("startup").setup({ theme = "dashboard" })
-
 -- Nvim tree
 -- following options are the default
-require("nvim-tree").setup({
-  disable_netrw = true,
-})
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup()
 
 map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
@@ -267,17 +239,6 @@ vim.keymap.set(
   "<cmd>lua require('rspec.integrated').run_spec_file()<cr>",
   { silent = true, noremap = true }
 )
-
--- Auto session
-require("auto-session").setup({
-  log_level = "info",
-  auto_session_enable_last_session = true,
-  auto_session_enabled = true,
-  auto_save_enabled = true,
-  auto_restore_enabled = true,
-  pre_save_cmds = { "tabdo NvimTreeClose" },
-  post_restore_cmds = { "tabdo NvimTreeOpen" },
-})
 
 -- lspkind Icon setup
 require("lspkind").init({})
@@ -503,7 +464,6 @@ map("i", ",/", "</<C-X><C-O>")
 -- Telescope Global remapping
 local actions = require("telescope.actions")
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("session-lens")
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
@@ -586,7 +546,6 @@ map(
 )
 map("n", "<leader>b", '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({}))<cr>')
 map("n", "<leader>j", '<cmd>lua require("telescope.builtin").help_tags()<cr>')
-map("n", "<leader>s", ":Telescope session-lens search_session<CR>")
 map("n", "<leader>f", ":Telescope file_browser<CR>")
 
 -- Change window shortcuts
@@ -614,16 +573,17 @@ require("formatter").setup({
     css = { prettier },
     scss = { prettier },
     markdown = { prettier },
-    ruby = {
-      -- rubocop
-      function()
-        return {
-          exe = "rubocop", -- might prepend `bundle exec `
-          args = { "--auto-correct", "--stdin", "%:p", "2>/dev/null", "|", "awk 'f; /^====================$/{f=1}'" },
-          stdin = true,
-        }
-      end,
-    },
+    ruby = { prettier },
+    -- ruby = {
+    --   -- rubocop
+    --   function()
+    --     return {
+    --       exe = "rubocop", -- might prepend `bundle exec `
+    --       args = { "--auto-correct", "--stdin", "%:p", "2>/dev/null", "|", "awk 'f; /^====================$/{f=1}'" },
+    --       stdin = true,
+    --     }
+    --   end,
+    -- },
     lua = {
       -- Stylua
       function()
@@ -655,3 +615,29 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
     vim.api.nvim_exec('silent! normal! g`"zv', false)
   end,
 })
+
+-- Neovide
+-- vim.g.neovide_cursor_vfx_mode = "railgun"
+--
+-- if vim.g.neovide then
+--   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+--   vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+--   vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+--   vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+--   vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+--   vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+-- end
+
+-- Allow clipboard copy paste in neovim
+vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+
+-- File types
+vim.api.nvim_exec(
+  [[
+    au BufRead *.thor set filetype=ruby
+]],
+  false
+)
