@@ -49,6 +49,7 @@ task :make_symlinks do
   %w[
     .config/nvim/init.lua
     .config/nvim/coc-settings.json
+    .config/nvim/lua
     .p10k.zsh
   ].each do |file|
     file_path = File.join(home_path, *file.split("/"))

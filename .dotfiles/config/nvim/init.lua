@@ -3,109 +3,10 @@ local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options
 
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
-    return true
-  end
-  return false
-end
+-- Map leader to coma
+g.mapleader = ","
 
-local packer_bootstrap = ensure_packer()
-
--- Plugins
-require("packer").startup(function(use)
-  use("wbthomason/packer.nvim") -- Packer can manage itself
-  use("numToStr/Comment.nvim")
-  use("ggandor/lightspeed.nvim") -- Maximize speed while minimizing mental effort and breaks in the flow
-  use("cappyzawa/trim.nvim")
-
-  -- Statusline
-  use({
-    "hoob3rt/lualine.nvim",
-    requires = { "nvim-tree/nvim-web-devicons", opt = true },
-  })
-
-  -- Completion
-  use("nvim-lua/completion-nvim")
-  use({ "neoclide/coc.nvim", branch = "release" })
-
-  -- use("jiangmiao/auto-pairs") -- Pair completion
-  use({ "nvim-lua/popup.nvim", requires = { "nvim-lua/plenary.nvim" } })
-
-  -- Git
-  use("airblade/vim-gitgutter")
-  use("tpope/vim-fugitive")
-  use("tpope/vim-rhubarb")
-  use("f-person/git-blame.nvim")
-
-  -- Registers
-  use("gennaro-tedesco/nvim-peekup")
-
-  use("mhartington/formatter.nvim")
-  use("nvim-telescope/telescope.nvim")
-  use("nvim-telescope/telescope-file-browser.nvim")
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-
-  use("onsails/lspkind-nvim") -- vscode like pictograms
-
-  use("tpope/vim-repeat")
-  use("wellle/targets.vim")
-  use("winston0410/cmd-parser.nvim")
-  use("lukas-reineke/indent-blankline.nvim") -- indent lines
-  use("yamatsum/nvim-cursorline") -- underline same words
-  use("mg979/vim-visual-multi") -- multi cursor
-  use("sindrets/diffview.nvim")
-  use("github/copilot.vim")
-
-  use({
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({})
-    end,
-  })
-
-  use({
-    "nvim-tree/nvim-tree.lua",
-    requires = "nvim-tree/nvim-web-devicons",
-  })
-
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  })
-  use({ "melopilosyan/rspec-integrated.nvim" })
-  -- use({
-  --   "Pocco81/auto-save.nvim",
-  --   config = function()
-  --     require("auto-save").setup({
-  --       trigger_events = { "InsertLeave" },
-  --     })
-  --   end,
-  -- })
-  --
-  use("nvim-tree/nvim-web-devicons")
-  use({ "romgrk/barbar.nvim", wants = "nvim-web-devicons" })
-
-  -- colorscheme
-  -- use("tomasiser/vim-code-dark")
-  -- use("Mofiqul/vscode.nvim")
-  use("navarasu/onedark.nvim")
-  -- use("marko-cerovac/material.nvim")
-  -- use({ "ellisonleao/gruvbox.nvim" })
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require("packer").sync()
-  end
-end)
+require("config.lazy")
 
 -- map function to set nvim keymap
 local function map(mode, lhs, rhs, opts)
@@ -115,9 +16,6 @@ local function map(mode, lhs, rhs, opts)
   end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
--- Map leader to space
-g.mapleader = ","
 
 -- Gui font
 vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
@@ -149,12 +47,6 @@ require("onedark").load()
 --   },
 -- })
 
--- Lightspeed remap
-vim.api.nvim_set_keymap("n", "h", "<Plug>Lightspeed_s", {})
-vim.api.nvim_set_keymap("n", "H", "<Plug>Lightspeed_S", {})
-vim.api.nvim_set_keymap("v", "h", "<Plug>Lightspeed_s", {})
-vim.api.nvim_set_keymap("v", "H", "<Plug>Lightspeed_S", {})
-
 -- Auto yank text on select
 vim.api.nvim_set_keymap("v", "<LeftRelease>", '"*ygv', {})
 
@@ -170,6 +62,7 @@ require("trim").setup({
   },
 })
 
+-- Indent blankline
 vim.opt.list = true
 local highlight = {
   "RainbowRed",
@@ -202,32 +95,10 @@ hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_ex
 -- following options are the default
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-require("nvim-tree").setup()
 
 map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
 map("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
 map("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
-
--- COC
-map("n", "<leader>h", ":call CocActionAsync('doHover')<CR>")
-
--- COC confirm completion with TAB and CR
-vim.api.nvim_exec(
-  [[
-" use <tab> for trigger completion and navigate to the next complete item
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-inoremap <silent><expr> <Tab>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-]],
-  true
-)
 
 -- Comment
 require("Comment").setup()
@@ -598,15 +469,23 @@ require("formatter").setup({
 })
 
 -- Runs Formatter on save
-vim.api.nvim_exec(
-  [[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.rb,*.js,*.ts,*.css,*.scss,*.md,*.html,*.lua : FormatWrite
-augroup END
-]],
-  true
-)
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+augroup("__formatter__", { clear = true })
+autocmd("BufWritePost", {
+  group = "__formatter__",
+  command = ":FormatWrite",
+})
+
+-- vim.api.nvim_exec(
+--   [[
+-- augroup FormatAutogroup
+--   autocmd!
+--   autocmd BufWritePost *.rb,*.js,*.ts,*.css,*.scss,*.md,*.html,*.lua : FormatWrite
+-- augroup END
+-- ]],
+--   true
+-- )
 
 -- Restore cursor position
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
