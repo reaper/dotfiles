@@ -35,6 +35,7 @@ plugins=(
   tmux
   rbenv
   docker
+  thefuck
 )
 
 # ZPlug
@@ -43,7 +44,9 @@ zplug "MichaelAquilina/zsh-you-should-use"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "loiccoyle/zsh-github-copilot"
+zplug "zsh-users/zsh-history-substring-search", as:plugin
+zplug "romkatv/powerlevel10k", as:theme
 
 #
 # Install plugins if there are plugins that have not been installed
@@ -84,6 +87,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export GPG_TTY=$(tty)
 export EDITOR=$(which nvim)
+export THOR_MERGE=$(which nvim)
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -92,3 +96,4 @@ eval "$(rbenv init - --no-rehash zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(gh copilot alias -- zsh)"
