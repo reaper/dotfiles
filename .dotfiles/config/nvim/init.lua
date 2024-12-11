@@ -34,7 +34,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 
 require("onedark").setup({
 	style = "darker",
+	highlights = {
+		DiffDelete = { fg = "$diff_delete" },
+	},
 })
+
 require("onedark").load()
 
 -- local c = require("vscode.colors")
@@ -475,7 +479,7 @@ end
 
 require("conform").setup({
 	formatters_by_ft = {
-		ruby = { "syntax_tree" },
+		ruby = { "syntax_tree", "rubocop" },
 
 		lua = { "stylua" },
 		-- Conform will run multiple formatters sequentially
@@ -536,6 +540,24 @@ vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true 
 vim.api.nvim_exec(
 	[[
     au BufRead *.thor set filetype=ruby
+]],
+	false
+)
+
+vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
+
+vim.api.nvim_exec(
+	[[
+if &diff
+    colorscheme evening
+endif
 ]],
 	false
 )

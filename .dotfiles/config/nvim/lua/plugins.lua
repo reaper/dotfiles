@@ -152,6 +152,7 @@ return {
 		config = function()
 			-- Your LSP settings here
 			require("lspconfig").syntax_tree.setup({})
+			-- require("lspconfig").rubocop.setup({})
 			-- require("lspconfig").ruby_lsp.setup({})
 			-- require("lspconfig").solargraph.setup({})
 		end,
@@ -210,5 +211,13 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {},
+	},
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = true,
 	},
 }
