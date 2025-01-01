@@ -479,6 +479,7 @@ end
 
 require("conform").setup({
 	async = true,
+	log_level = vim.log.levels.DEBUG,
 	formatters_by_ft = {
 		ruby = { "syntax_tree", "rubocop" },
 
