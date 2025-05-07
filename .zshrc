@@ -44,7 +44,6 @@ zplug "MichaelAquilina/zsh-you-should-use"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "loiccoyle/zsh-github-copilot"
 zplug "zsh-users/zsh-history-substring-search", as:plugin
 zplug "romkatv/powerlevel10k", as:theme
 
