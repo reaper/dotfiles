@@ -23,6 +23,12 @@ vim.api.nvim_exec([[set guifont=FiraCode\ Nerd\ Font:h10]], false)
 -- Load the colorscheme
 vim.o.background = "dark" -- or "light" for light mode
 
+-- Allow Neovim to read project-specific configs
+vim.o.exrc = true
+
+-- For safety: require trust before running local configs
+vim.o.secure = true
+
 -- autoread
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {

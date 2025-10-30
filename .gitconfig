@@ -27,6 +27,7 @@
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
   squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} \"$@\");};f"
   tags = "!f() { git tag -l | sort -V; }; f"
+  last-week = "!f() { git lg --since=\"last Monday\" --author=\"<$(git config user.email)>\"; }; f"
 
 [color]
   branch = auto

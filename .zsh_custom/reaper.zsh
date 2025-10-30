@@ -85,6 +85,7 @@ export CI=true
 export RAILS_SYSTEM_TESTING_SCREENSHOT=inline
 
 alias cat=bat
+alias glaude=claude
 
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh

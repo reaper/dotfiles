@@ -80,6 +80,20 @@ return {
 		config = function() end,
 	},
 	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- },
+	{
 		"airblade/vim-gitgutter",
 		opts = {},
 		config = function() end,
@@ -150,7 +164,7 @@ return {
 		end,
 		config = function()
 			-- Your LSP settings here
-			require("lspconfig").syntax_tree.setup({})
+			-- require("lspconfig").syntax_tree.setup({})
 			-- require("lspconfig").ruby_lsp.setup({})
 			-- require("lspconfig").rubocop.setup({})
 			-- require("lspconfig").solargraph.setup({})
@@ -232,30 +246,57 @@ return {
 		opts = {
 			-- add any opts here
 			-- for example
-			provider = "openai",
-			openai = {
-				endpoint = "https://api.openai.com/v1",
-				model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-				timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-				temperature = 0,
-				max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-				--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+			provider = "claude",
+			auto_suggestions_provider = "copilot",
+			providers = {
+				copilot = {
+					model = "gpt-4.1",
+				},
+				openai = {
+					endpoint = "https://api.openai.com/v1",
+					model = "gpt-4.1", -- your desired model (or use gpt-4o, etc.)
+					extra_request_body = {
+						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+						temperature = 0,
+						max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+						--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+					},
+				},
+				claude = {
+					endpoint = "https://api.anthropic.com",
+					model = "claude-sonnet-4-5",
+					extra_request_body = {
+						temperature = 0,
+						max_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+					},
+				},
+				ollama = {
+					endpoint = "http://10.11.0.13:11434",
+					model = "qwen3:8b",
+				},
+				local_ollama = {
+					__inherited_from = "openai",
+					api_key_name = "",
+					endpoint = "http://10.11.0.13:11434/v1",
+					model = "deepseek-r1:7b",
+					-- mode = "legacy",
+					--disable_tools = true, -- Open-source models often do not support tools.
+				},
 			},
 		},
-		rag_service = {
-			enabled = true, -- Enables the RAG service
-			host_mount = os.getenv("HOME"), -- Host mount path for the rag service
-			provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
-			llm_model = "gpt-4o", -- The LLM model to use for RAG service
-			embed_model = "", -- The embedding model to use for RAG service
-			endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
-		},
+		-- rag_service = {
+		-- 	enabled = true, -- Enables the RAG service
+		-- 	host_mount = os.getenv("HOME"), -- Host mount path for the rag service
+		-- 	provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
+		-- 	llm_model = "gpt-4o", -- The LLM model to use for RAG service
+		-- 	embed_model = "gpt-4o", -- The embedding model to use for RAG service
+		-- 	endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
+		-- },
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
 		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
@@ -263,6 +304,8 @@ return {
 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim", -- for input provider snacks
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
@@ -310,4 +353,54 @@ return {
 			},
 		},
 	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
+	{
+		"coder/claudecode.nvim",
+		dependencies = { "folke/snacks.nvim" },
+		config = true,
+		keys = {
+			{ "<leader>k", nil, desc = "AI/Claude Code" },
+			{ "<leader>kc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+			{ "<leader>kf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+			{ "<leader>kr", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+			{ "<leader>kC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+			{ "<leader>km", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+			{ "<leader>kb", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+			{ "<leader>ks", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+			{
+				"<leader>ks",
+				"<cmd>ClaudeCodeTreeAdd<cr>",
+				desc = "Add file",
+				ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+			},
+			-- Diff management
+			{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+		},
+	},
+
+	-- {
+	-- 	"ravitemer/mcphub.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+	-- 	config = function()
+	-- 		require("mcphub").setup()
+	-- 	end,
+	-- },
 }
