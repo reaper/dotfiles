@@ -4,15 +4,38 @@ return {
 		opts = {
 			-- add any options here
 		},
+		config = function(_, opts)
+			require("Comment").setup(opts)
+		end,
 	},
 
 	{
 		"cappyzawa/trim.nvim",
 		opts = {},
+		config = function(s)
+			require("trim").setup({
+				ft_blocklist = { "markdown" },
+
+				-- if you want to ignore space of top
+				patterns = {
+					[[%s/\s\+$//e]],
+					[[%s/\($\n\s*\)\+\%$//]],
+					[[%s/\(\n\n\)\n\+/\1/]],
+				},
+			})
+		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = {
+					-- theme = "onedark",
+					theme = "tokyonight",
+				},
+			})
+		end,
 	},
 	{
 		"windwp/nvim-autopairs",
@@ -28,10 +51,78 @@ return {
 	{
 		"navarasu/onedark.nvim",
 		opts = {},
+		config = function()
+			-- require("onedark").setup({
+			-- 	style = "darker",
+			-- 	highlights = {
+			-- 		DiffDelete = { fg = "$diff_delete" },
+			-- 	},
+			-- })
+
+			-- require("onedark").load()
+
+			-- local c = require("vscode.colors")
+			-- require("vscode").setup({
+			--   transparent = true,
+			--   italic_comments = true,
+			--   disable_nvimtree_bg = true,
+			--   group_overrides = {
+			--     Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+			--   },
+			-- })
+			-- vim.cmd([[colorscheme onedark]])
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		lazy = false,
+		config = function()
+			require("nvim-treesitter.install").prefer_git = true
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"ruby",
+					"lua",
+					"javascript",
+					"typescript",
+					"tsx",
+					"json",
+					"html",
+					"css",
+					"scss",
+					"bash",
+					"yaml",
+					"markdown",
+					"markdown_inline",
+					"vim",
+					"dockerfile",
+					"go",
+					"gomod",
+					"gosum",
+					"gowork",
+					"gitignore",
+					"comment",
+					"diff",
+					"gitattributes",
+					"gitcommit",
+					"git_config",
+					"git_rebase",
+					"http",
+					"jinja",
+					"jinja_inline",
+					"make",
+					"perl",
+					"regex",
+					"toml",
+					"vimdoc",
+					"kotlin",
+					"rust",
+					"sql",
+					"terraform",
+				},
+				ignore_install = { "phpdoc", "ipkg" },
+				highlight = { enable = true },
+			})
+		end,
 	},
 	{
 		"nvim-tree/nvim-web-devicons",
@@ -46,16 +137,61 @@ return {
 		},
 		config = function()
 			require("nvim-tree").setup({})
+
+			vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
+
+			vim.api.nvim_set_keymap("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true })
+			vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
+			vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFindFile<CR>", { silent = true })
 		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {},
+		config = function()
+			vim.opt.list = true
+			local highlight = {
+				"RainbowRed",
+				"RainbowYellow",
+				"RainbowBlue",
+				"RainbowOrange",
+				"RainbowGreen",
+				"RainbowViolet",
+				"RainbowCyan",
+			}
+			local hooks = require("ibl.hooks")
+			-- create the highlight groups in the highlight setup hook, so they are reset
+			-- every time the colorscheme changes
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+				vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+				vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+				vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+				vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+				vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+			end)
+
+			vim.g.rainbow_delimiters = { highlight = highlight }
+			require("ibl").setup({ scope = { highlight = highlight } })
+
+			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").load_extension("file_browser")
+
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+		end,
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -73,6 +209,9 @@ return {
 	{
 		"onsails/lspkind.nvim",
 		opts = {},
+		config = function()
+			require("lspkind").init()
+		end,
 	},
 	{
 		"github/copilot.vim",
@@ -151,7 +290,7 @@ return {
 		},
 		init = function()
 			vim.g.coq_settings = {
-				auto_start = "shut-up", -- if you want to start COQ at startup
+				auto_start = true,
 				keymap = {
 					recommended = false,
 					jump_to_mark = "<c-,>",
@@ -218,6 +357,54 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {},
+		config = function()
+			require("conform").setup({
+				log_level = vim.log.levels.DEBUG,
+				formatters = {
+					rubocop = {
+						args = {
+							"-a",
+							"-f",
+							"quiet",
+							"--stderr",
+							"--stdin",
+							"$FILENAME",
+						},
+					},
+				},
+				formatters_by_ft = {
+					ruby = { "syntax_tree", "rubocop" },
+
+					lua = { "stylua" },
+					-- Conform will run multiple formatters sequentially
+					python = { "isort", "black" },
+					-- You can customize some of the format options for the filetype (:help conform.format)
+					rust = { "rustfmt", lsp_format = "fallback" },
+					-- Conform will run the first available formatter
+					javascript = { "prettierd", "prettier", stop_after_first = true },
+					-- javascript = { "standardjs" },
+				},
+			})
+
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*",
+				callback = function(args)
+					require("conform").format({ bufnr = args.buf, lsp_format = "fallback", timeout_ms = 5000 })
+				end,
+			})
+
+			vim.api.nvim_create_user_command("Format", function(args)
+				local range = nil
+				if args.count ~= -1 then
+					local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+					range = {
+						start = { args.line1, 0 },
+						["end"] = { args.line2, end_line:len() },
+					}
+				end
+				require("conform").format({ async = true, lsp_format = "fallback", range = range })
+			end, { range = true })
+		end,
 	},
 	{
 		"olimorris/codecompanion.nvim",
@@ -225,7 +412,28 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
-		config = true,
+		config = function()
+			require("codecompanion").setup({})
+
+			vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap(
+				"n",
+				"<LocalLeader>a",
+				"<cmd>CodeCompanionChat Toggle<cr>",
+				{ noremap = true, silent = true }
+			)
+			vim.api.nvim_set_keymap(
+				"v",
+				"<LocalLeader>a",
+				"<cmd>CodeCompanionChat Toggle<cr>",
+				{ noremap = true, silent = true }
+			)
+			vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+			-- Expand 'cc' into 'CodeCompanion' in the command line
+			vim.cmd([[cab cc CodeCompanion]])
+		end,
 		opts = {
 			strategies = {
 				-- Change the default chat adapter
@@ -391,6 +599,18 @@ return {
 			{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
 			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		config = function()
+			require("tokyonight").setup({
+				style = "night",
+			})
+			vim.cmd([[colorscheme tokyonight]])
+		end,
 	},
 
 	-- {
