@@ -36,6 +36,7 @@ plugins=(
   rbenv
   docker
   thefuck
+  nvm
 )
 
 # ZPlug

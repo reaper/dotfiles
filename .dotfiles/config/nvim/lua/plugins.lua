@@ -184,8 +184,6 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
-			require("telescope").load_extension("file_browser")
-
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
@@ -196,6 +194,15 @@ return {
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
+		"mrloop/telescope-git-branch.nvim",
+		config = function()
+			require("telescope").load_extension("git_branch")
+		end,
 	},
 	{
 		"folke/todo-comments.nvim",
@@ -271,7 +278,6 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
-		lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
 		dependencies = {
 			-- main one
 			{ "ms-jpq/coq_nvim", branch = "coq" },
@@ -290,7 +296,7 @@ return {
 		},
 		init = function()
 			vim.g.coq_settings = {
-				auto_start = true,
+				auto_start = false,
 				keymap = {
 					recommended = false,
 					jump_to_mark = "<c-,>",
@@ -611,6 +617,16 @@ return {
 			})
 			vim.cmd([[colorscheme tokyonight]])
 		end,
+	},
+	{
+		"wurli/visimatch.nvim",
+		opts = {},
+	},
+	{
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
+		opts = { -- set to setup table
+		},
 	},
 
 	-- {
