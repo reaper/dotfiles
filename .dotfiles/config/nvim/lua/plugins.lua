@@ -433,7 +433,7 @@ return {
 				claude = {
 					endpoint = "https://api.anthropic.com",
 					auth_type = "max",
-					model = "claude-opus-4.6",
+					model = "claude-opus-4-6",
 					timeout = 30000, -- Timeout in milliseconds
 					extra_request_body = {
 						temperature = 0.75,
