@@ -78,7 +78,7 @@ return {
 		lazy = false,
 		config = function()
 			require("nvim-treesitter.install").prefer_git = true
-			require("nvim-treesitter.configs").setup({
+			require("nvim-treesitter").setup({
 				ensure_installed = {
 					"ruby",
 					"lua",
@@ -413,108 +413,49 @@ return {
 		end,
 	},
 	{
-		"olimorris/codecompanion.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("codecompanion").setup({})
-
-			vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-			vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-			vim.api.nvim_set_keymap(
-				"n",
-				"<LocalLeader>a",
-				"<cmd>CodeCompanionChat Toggle<cr>",
-				{ noremap = true, silent = true }
-			)
-			vim.api.nvim_set_keymap(
-				"v",
-				"<LocalLeader>a",
-				"<cmd>CodeCompanionChat Toggle<cr>",
-				{ noremap = true, silent = true }
-			)
-			vim.api.nvim_set_keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
-
-			-- Expand 'cc' into 'CodeCompanion' in the command line
-			vim.cmd([[cab cc CodeCompanion]])
-		end,
-		opts = {
-			strategies = {
-				-- Change the default chat adapter
-				chat = {
-					adapter = "anthropic",
-				},
-			},
-			opts = {
-				-- Set debug logging
-				log_level = "DEBUG",
-			},
-		},
-	},
-	{
 		"yetone/avante.nvim",
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		-- ⚠️ must add this setting! ! !
+		build = vim.fn.has("win32") ~= 0
+				and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			or "make",
 		event = "VeryLazy",
 		version = false, -- Never set this value to "*"! Never!
+		---@module 'avante'
+		---@type avante.Config
 		opts = {
 			-- add any opts here
+			-- this file can contain specific instructions for your project
+			instructions_file = "AGENTS.md",
 			-- for example
 			provider = "claude",
-			auto_suggestions_provider = "copilot",
 			providers = {
-				copilot = {
-					model = "gpt-4.1",
-				},
-				openai = {
-					endpoint = "https://api.openai.com/v1",
-					model = "gpt-4.1", -- your desired model (or use gpt-4o, etc.)
-					extra_request_body = {
-						timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-						temperature = 0,
-						max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-						--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-					},
-				},
 				claude = {
 					endpoint = "https://api.anthropic.com",
-					model = "claude-sonnet-4-5",
+					auth_type = "max",
+					model = "claude-opus-4.6",
+					timeout = 30000, -- Timeout in milliseconds
 					extra_request_body = {
-						temperature = 0,
-						max_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+						temperature = 0.75,
+						max_tokens = 20480,
 					},
 				},
-				ollama = {
-					endpoint = "http://10.11.0.13:11434",
-					model = "qwen3:8b",
-				},
-				local_ollama = {
-					__inherited_from = "openai",
-					api_key_name = "",
-					endpoint = "http://10.11.0.13:11434/v1",
-					model = "deepseek-r1:7b",
-					-- mode = "legacy",
-					--disable_tools = true, -- Open-source models often do not support tools.
+				moonshot = {
+					endpoint = "https://api.moonshot.ai/v1",
+					model = "kimi-k2-0711-preview",
+					timeout = 30000, -- Timeout in milliseconds
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 32768,
+					},
 				},
 			},
 		},
-		-- rag_service = {
-		-- 	enabled = true, -- Enables the RAG service
-		-- 	host_mount = os.getenv("HOME"), -- Host mount path for the rag service
-		-- 	provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
-		-- 	llm_model = "gpt-4o", -- The LLM model to use for RAG service
-		-- 	embed_model = "gpt-4o", -- The embedding model to use for RAG service
-		-- 	endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
-		-- },
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-mini/mini.pick", -- for file_selector provider mini.pick
 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf
@@ -549,6 +490,103 @@ return {
 			},
 		},
 	},
+	-- {
+	-- 	"yetone/avante.nvim",
+	-- 	event = "VeryLazy",
+	-- 	version = false, -- Never set this value to "*"! Never!
+	-- 	opts = {
+	-- 		-- add any opts here
+	-- 		-- for example
+	-- 		provider = "claude",
+	-- 		auto_suggestions_provider = "claude",
+	-- 		providers = {
+	-- 			copilot = {
+	-- 				model = "gpt-4.1",
+	-- 			},
+	-- 			openai = {
+	-- 				endpoint = "https://api.openai.com/v1",
+	-- 				model = "gpt-4.1", -- your desired model (or use gpt-4o, etc.)
+	-- 				extra_request_body = {
+	-- 					timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+	-- 					temperature = 0,
+	-- 					max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+	-- 					--reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+	-- 				},
+	-- 			},
+	-- 			claude = {
+	-- 				endpoint = "https://api.anthropic.com",
+	-- 				auth_type = "max",
+	-- 				model = "claude-sonnet-4-5",
+	-- 				extra_request_body = {
+	-- 					temperature = 0.75,
+	-- 					max_tokens = 4096, -- Increase this to include reasoning tokens (for reasoning models)
+	-- 				},
+	-- 			},
+	-- 			ollama = {
+	-- 				endpoint = "http://10.11.0.13:11434",
+	-- 				model = "qwen3:8b",
+	-- 			},
+	-- 			local_ollama = {
+	-- 				__inherited_from = "openai",
+	-- 				api_key_name = "",
+	-- 				endpoint = "http://10.11.0.13:11434/v1",
+	-- 				model = "deepseek-r1:7b",
+	-- 				-- mode = "legacy",
+	-- 				--disable_tools = true, -- Open-source models often do not support tools.
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	-- rag_service = {
+	-- 	-- 	enabled = true, -- Enables the RAG service
+	-- 	-- 	host_mount = os.getenv("HOME"), -- Host mount path for the rag service
+	-- 	-- 	provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
+	-- 	-- 	llm_model = "gpt-4o", -- The LLM model to use for RAG service
+	-- 	-- 	embed_model = "gpt-4o", -- The embedding model to use for RAG service
+	-- 	-- 	endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
+	-- 	-- },
+	-- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+	-- 	build = "make",
+	-- 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		--- The below dependencies are optional,
+	-- 		"echasnovski/mini.pick", -- for file_selector provider mini.pick
+	-- 		"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+	-- 		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+	-- 		"ibhagwan/fzf-lua", -- for file_selector provider fzf
+	-- 		"stevearc/dressing.nvim", -- for input provider dressing
+	-- 		"folke/snacks.nvim", -- for input provider snacks
+	-- 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+	-- 		"zbirenbaum/copilot.lua", -- for providers='copilot'
+	-- 		{
+	-- 			-- support for image pasting
+	-- 			"HakonHarnes/img-clip.nvim",
+	-- 			event = "VeryLazy",
+	-- 			opts = {
+	-- 				-- recommended settings
+	-- 				default = {
+	-- 					embed_image_as_base64 = false,
+	-- 					prompt_for_file_name = false,
+	-- 					drag_and_drop = {
+	-- 						insert_mode = true,
+	-- 					},
+	-- 					-- required for Windows users
+	-- 					use_absolute_path = true,
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		{
+	-- 			-- Make sure to set this up properly if you have lazy=true
+	-- 			"MeanderingProgrammer/render-markdown.nvim",
+	-- 			opts = {
+	-- 				file_types = { "markdown", "Avante" },
+	-- 			},
+	-- 			ft = { "markdown", "Avante" },
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -580,30 +618,6 @@ return {
 			--   `nvim-notify` is only needed, if you want to use the notification view.
 			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
-		},
-	},
-	{
-		"coder/claudecode.nvim",
-		dependencies = { "folke/snacks.nvim" },
-		config = true,
-		keys = {
-			{ "<leader>k", nil, desc = "AI/Claude Code" },
-			{ "<leader>kc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-			{ "<leader>kf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-			{ "<leader>kr", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-			{ "<leader>kC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-			{ "<leader>km", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-			{ "<leader>kb", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-			{ "<leader>ks", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-			{
-				"<leader>ks",
-				"<cmd>ClaudeCodeTreeAdd<cr>",
-				desc = "Add file",
-				ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
-			},
-			-- Diff management
-			{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
 	},
 	{
