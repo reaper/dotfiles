@@ -35,7 +35,6 @@ plugins=(
   tmux
   rbenv
   docker
-  thefuck
   nvm
 )
 
@@ -107,4 +106,7 @@ source ~/.env
 
 # Added by Antigravity
 export PATH="/Users/reaper/.antigravity/antigravity/bin:$PATH"
+
+# CLAUDE
 export FORCE_COLOR=1
+alias clauded="claude --dangerously-skip-permissions --verbose"

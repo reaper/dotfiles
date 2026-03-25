@@ -90,6 +90,7 @@ alias glaude=claude
 # Include reaper zsh plugins
 source $ZSH_CUSTOM/reaper/system.zsh
 source $ZSH_CUSTOM/reaper/git_extra.zsh
-source $ZSH_CUSTOM/reaper/fourjs.zsh
+# source $ZSH_CUSTOM/reaper/fourjs.zsh
 source $ZSH_CUSTOM/reaper/android.zsh
 source $ZSH_CUSTOM/reaper/docker.zsh
+source $ZSH_CUSTOM/reaper/kelindi.zsh
